@@ -26,7 +26,7 @@ bison/skeletons
 
 For GNU Bison 3.8, the Skeleton files which are available are;
 
-- ```glr.cc```
+- glr.cc
 - glr2.cc
 - lalr1.cc
 - location.cc
