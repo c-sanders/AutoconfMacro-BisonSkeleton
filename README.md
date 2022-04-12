@@ -12,6 +12,25 @@ sub-directory of this package.
 It might be worth mentioning that this macro is the sole reason for this package's existence - that
 is, this package wouldn't exist if it wasn't for this macro.
 
+
+### 2) GNU Bison Skeleton files
+
+When GNU Bison creates a Parser, it doesn't do it from scratch. Instead, it uses as a starting
+point, one of its Skeleton files. Depending upon how GNU Bison has been installed on any particular
+system, one may be able to find these Skeleton files within the following sub-directory of the
+location into which GNU Bison has been installed;
+
+```
+bison/skeletons
+```
+
+For GNU Bison 3.8, the Skeleton files which are available are;
+
+- ```glr.cc```
+- glr2.cc
+- lalr1.cc
+- location.cc
+
 ### 2) Invoking the macro
 
 In order for a GNU Autotools package to use this macro properly, the package must invoke the macro
@@ -36,7 +55,7 @@ following configure script option should show up when this configure script is i
 ```
 
 
-### 2) Implementation of the macro
+### 3) Implementation of the macro
 
 The macro is implemented in a rather basic fashion. It does not do anything too complex, and most of
 the work is offloaded onto the GNU Autoconf macro ```AC_CHECK_PROG```.
