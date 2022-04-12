@@ -3,13 +3,19 @@ Filename : README.md
 
 ### 1) Introduction
 
-The 
+This package implements a GNU Autoconf macro which is called ```AX_BISON_SKELETON```. This macro can
+be used to specify the Skeleton file which GNU Bison should use to build its Parser.
 
-The sole reason this package exists, is because it contains a file called ```ax_bison_skeleton.m4```.
-This file implements a GNU Autoconf macro which can be used for specifying the Skeleton file which
-GNU Bison should use to build its parser. The macro is called
-```AX_BISON_SKELETON``` and in order for a GNU Autotools package to use it properly, it must be
-invoked from within the package's ```configure.ac``` file as follows;
+The macro is implemented in the file ```ax_bison_skeleton.m4```, which resides within the m4
+sub-directory of this package.
+
+It might be worth mentioning that this macro is the sole reason for this package's existence - that
+is, this package wouldn't exist if it wasn't for this macro.
+
+### 2) Invoking the macro
+
+In order for a GNU Autotools package to use this macro properly, the package must invoke the macro
+from within its ```configure.ac``` file as follows;
 
 ```
 AX_BISON_SKELETON()
@@ -19,8 +25,8 @@ If the GNU Autotools are able to successfully process a project which uses this 
 should generate a file which is called ```configure```. This file is referred to as the configure
 script for the project which it was generated for, and if the ```AX_BISON_SKELETON``` macro was able
 to be successfully incorporated into this configure script by the GNU Autotools, then the
-following configure script option should be available when this configure script is invoked with
-the ```--help``` option;
+following configure script option should show up when this configure script is invoked with the
+```--help``` option;
 
 ```
 --with-bison-skeleton=[bison_skeleton]
