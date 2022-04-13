@@ -16,9 +16,9 @@ is, this package wouldn't exist if it wasn't for this macro.
 ### 2) GNU Bison Skeleton files
 
 When GNU Bison creates a Parser, it doesn't do it from scratch. Instead, it uses as a starting
-point, one of its Skeleton files. Depending upon how GNU Bison has been installed on any particular
-system, one may be able to find these Skeleton files within the following sub-directory of the
-location into which GNU Bison has been installed;
+point, one of the Skeleton files that are distributed with the GNU Bison package. Depending upon how
+GNU Bison has been installed on any particular system, one may be able to find these Skeleton files
+within the following sub-directory of the location into which GNU Bison has been installed;
 
 ```
 bison/skeletons
@@ -31,7 +31,7 @@ For GNU Bison 3.8, the Skeleton files which are available are;
 - lalr1.cc
 - location.cc
 
-### 2) Invoking the macro
+### 3) Invoking the macro
 
 In order for a GNU Autotools package to use this macro properly, the package must invoke the macro
 from within its ```configure.ac``` file as follows;
@@ -70,33 +70,33 @@ As at 12 April 2022, the macro was implemented as follows;
 05 # This macro can be used to tell the GNU Autotools which Skeleton file GNU
 06 # Bison should use.
 07 # -----------------------------------------------------------------------------
-08
-09
+08 
+09 
 10 AC_DEFUN(
-11
+11 
 12   [AX_BISON_SKELETON],
-13
+13 
 14   [
-15    AC_ARG_WITH(
-16 	  [bison-skeleton],
-17 	  [
-18     AS_HELP_STRING(
-19 [--with-bison-skeleton=@<:@bison_skeleton@:>@],
-20 [instruct GNU Bison to use the specified Skeleton file]
-21 )
-22    ],
-	  [BISON_SKELETON=${withval}],
-	  [BISON_SKELETON=""]
-	)
-	AS_CASE(
-	  [${withval}],
-	  [yes], [BISON_SKELETON="lalr1.cc",
-	  [no],  [BISON_SKELETON="lalr1.cc"],
-	  [BISON_SKELETON="${withval}"]
-	)
-	AC_SUBST(BISON_SKELETON)
-  ]
-)
+15     AC_ARG_WITH(
+16       [bison-skeleton],
+17       [
+18         AS_HELP_STRING(
+19           [--with-bison-skeleton=@<:@bison-skeleton@:>@],
+20           [instruct GNU Bison as to which Skeleton file to use (ARG=bison_skeleton_file)]
+21         )
+22       ],
+23       [BISON_SKELETON=${withval}],
+24       [BISON_SKELETON=""]
+25     )
+26     AS_CASE(
+27       [${withval}],
+28       [yes], [BISON_SKELETON="lalr1.c"],
+29       [no],  [BISON_SKELETON="lalr1.c"],
+30       [BISON_SKELETON="${withval}"]
+31     )
+32     AC_SUBST(BISON_SKELETON)
+33   ]
+34 )
 ```
 
 - ```AC_DEFUN```
@@ -104,16 +104,16 @@ As at 12 April 2022, the macro was implemented as follows;
 This is what is actually responsible for the definition of the macro.
 
 The first argument on line 12 declares the name of the macro which is being defined, i.e.
-```AX_BISON_ROOTDIR```.
+```AX_BISON_SKELETON```.
 
 The second argument on lines 14-33, define the body of the macro.
 
 
 - ```AC_ARG_WITH```
 
-This defines the variable which is associated with this macro.
+This defines the ```--with``` option which is associated with this macro; in this case ```--with-bison-skeleton```.
 
-The first argument on line 16 declares the name of the variable, i.e.```bison_rootdir``.
+The first argument on line 16 declares the name of the ```--with``` option which should be associated with this macro, i.e.```bison-skeleton``.
 
 The second argument on lines 17-22 defines how the macro is presented to the user of the configure
 script.
