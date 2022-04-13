@@ -103,15 +103,17 @@ As at 12 April 2022, the macro was implemented as follows;
 
 This is what is actually responsible for the definition of the macro.
 
-The first argument on line 12 declares the name of the macro which is being defined, i.e.
+1) The first argument on line 12 declares the name of the macro which is being defined, i.e.
 ```AX_BISON_SKELETON```.
 
-The second argument on lines 14-33, define the body of the macro.
+2) The second argument on lines 14-33, define the body of the macro.
 
 
 - ```AC_ARG_WITH```
 
-This defines the ```--with``` option which is associated with this macro; in this case ```--with-bison-skeleton```.
+This informs GNU Autoconf that an external package may be required by the current package.
+
+1) This value is used to define the ```--with``` option which will be associated with this macro. Seeing as the value specified here is ```bison-skeleton```, the resulting ```--with``` option for this macro will be ```--with-bison-skeleton```.
 
 The first argument on line 16 declares the name of the ```--with``` option which should be associated with this macro, i.e.```bison-skeleton``.
 
