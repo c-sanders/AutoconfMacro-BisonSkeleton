@@ -135,6 +135,10 @@ This implements a switch statement which processes the value that was passed to 
 4) The fourth argument on line 30 instructs the macro to set the environment variable ```BISON_SKELETON``` to the value which was passed to the ```--with-bison-skeleton``` option by the user of the configure script. This macro does not check to see if the value which was passed to this option is valid or not, so the user of the configure script needs to be careful as to what values they pass it!
 
 
+### 4) Usage of the macro
+
+If the package which is to be configured by the GNU Autotools, may or does need the user running the configure script to specify which GNU Bison Skeleton file should be used, then this macro will need to be invoked from the package's ```configure.ac``` file.
+
 
 
 
