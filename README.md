@@ -149,7 +149,13 @@ AX_BISON_SKELETON(["lalr1.cc"])
 
 - By the person configuring the package
 
+If the person who is configuring the package wants to explicitly set the GNU Bison Skeleton file which is to be used by the package, then they will need 
 
+An example invocation is shown below;
+
+```
+configre ... --with-bison-skeleton=/usr/local/bison-3.8/bison/skeletons/lalr1.cc
+```
 
 
 
