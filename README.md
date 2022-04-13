@@ -113,7 +113,7 @@ This is what is actually responsible for the definition of the macro.
 
 This informs GNU Autoconf that an external package with a specific name, may be required by the current package.
 
-1) The first argument on line 16 declares both the specific name for the package and the ```--with``` option which will be associated with this macro. Seeing as the value specified here is ```bison-skeleton```, the resulting ```--with``` option for this macro will be ```--with-bison-skeleton```.
+1) The first argument on line 16 declares the specific name for the package and helps form the name for the ```--with``` option which will be associated with this macro. Seeing as the value specified here is ```bison-skeleton```, the resulting ```--with``` option for this macro will be ```--with-bison-skeleton```.
 
 2) The second argument on lines 17-22 defines how the ```--with``` option for this macro will be presented to the user of the configure script.
 
@@ -124,7 +124,7 @@ This informs GNU Autoconf that an external package with a specific name, may be 
 
 - ```AS_CASE```
 
-
+ This processes the 
 
 
 
