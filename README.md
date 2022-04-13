@@ -111,21 +111,19 @@ This is what is actually responsible for the definition of the macro.
 
 - ```AC_ARG_WITH```
 
-This informs GNU Autoconf that an external package may be required by the current package.
+This informs GNU Autoconf that an external package with a specific name, may be required by the current package.
 
-1) This value is used to define the ```--with``` option which will be associated with this macro. Seeing as the value specified here is ```bison-skeleton```, the resulting ```--with``` option for this macro will be ```--with-bison-skeleton```.
+1) The first argument on line 16 declares both the specific name for the package and the ```--with``` option which will be associated with this macro. Seeing as the value specified here is ```bison-skeleton```, the resulting ```--with``` option for this macro will be ```--with-bison-skeleton```.
 
-The first argument on line 16 declares the name of the ```--with``` option which should be associated with this macro, i.e.```bison-skeleton``.
+2) The second argument on lines 17-22 defines how the ```--with``` option for this macro will be presented to the user of the configure script.
 
-The second argument on lines 17-22 defines how the macro is presented to the user of the configure
-script.
+3) The third argument on line 23 specifies what actions to take if the user of the configure script specifies a value for the ```--with-bison-skeleton``` option.
 
-The third argument on line 23 specifies what to set the environment variable to if found.
-
-The fourth argument on line 24 specifies what to set the environment variable to if not found.
+4) The fourth argument on line 24 specifies what actions to take if the user of the configure script does not specify a value for the ```--with-bison-skeleton``` option.
 
 
 - ```AS_CASE```
+
 
 
 
