@@ -17,7 +17,7 @@ AC_DEFUN(
 	  [
 AS_HELP_STRING(
 [--with-bison-skeleton=@<:@bison-skeleton@:>@],
-[Have the build process either; 1) use the first instance of flex which is found within the user's PATH (ARG=yes), ii) not use an instance of bison at all (ARG=no), or iii) use the instance of bison which resides at a specific loction (ARG=path_to_bison)]
+[instruct GNU Bison which Skeleton file to use (ARG=bison_skeleton)]
 )
 	  ],
 	  [BISON_SKELETON=${withval}],
@@ -25,10 +25,10 @@ AS_HELP_STRING(
 	)
 	AS_CASE(
 	  [${withval}],
-	  [yes], [BISON_SKELETON="lalr1.c",
+	  [yes], [BISON_SKELETON="lalr1.c"],
 	  [no],  [BISON_SKELETON="lalr1.c"],
 	  [BISON_SKELETON="${withval}"]
 	)
-	AC_SUBST(BISON_SKELETON)
+AC_SUBST(BISON_SKELETON)
   ]
 )
