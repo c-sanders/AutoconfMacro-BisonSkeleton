@@ -137,7 +137,17 @@ This implements a switch statement which processes the value that was passed to 
 
 ### 4) Usage of the macro
 
-If the package which is to be configured by the GNU Autotools, may or does need the user running the configure script to specify which GNU Bison Skeleton file should be used, then this macro will need to be invoked from the package's ```configure.ac``` file.
+- By the person maintaining the package
+
+If the package which is to be configured by the GNU Autotools, does - or even might, need the user running the configure script to specify which GNU Bison Skeleton file should be used, then this macro will need to be invoked from within the package's ```configure.ac``` file.
+
+It should be invoked from within this file as follows;
+
+```
+AX_BISON_SKELETON(["lalr1.cc"])
+```
+
+- By the person configuring the package
 
 
 
