@@ -126,9 +126,13 @@ This informs GNU Autoconf that an external package with a specific name, may be 
 
 This implements a switch statement which processes the value that was passed to the ```--with-bison-skeleton``` by the user of the configure script.
  
-1) The first argument on line 27 instructs the macro as to what value it should switch on.
+1) The first argument on line 27 instructs the macro as to what value it should make its decision on.
 
-2) The second argument on line 28 instructs the macro to set the environment variable ```BISON_SKELETON``` to GNU Bison Skeleton file ```lalr1.cc``` if a value of "yes" was passed to the ```--with-bison-skeleton``` option 
+2) The second argument on line 28 instructs the macro to set the environment variable ```BISON_SKELETON``` to the GNU Bison Skeleton file ```lalr1.cc``` if a value of ```yes"``` was passed to the ```--with-bison-skeleton``` option by the user of the configure script.
+
+3) The third argument on line 29 instructs the macro to set the environment variable ```BISON_SKELETON``` to the GNU Bison Skeleton file ```lalr1.cc``` if a value of ```no"``` was passed to the ```--with-bison-skeleton``` option by the user of the configure script.
+
+4) The fourth argument on line 30 instructs the macro to set the environment variable ```BISON_SKELETON``` to the value which was passed to the ```--with-bison-skeleton``` option by the user of the configure script. This macro does not check to see if the value which was passed to this option is valid or not, so the user of the configure script needs to be careful as to what values they pass it!
 
 
 
