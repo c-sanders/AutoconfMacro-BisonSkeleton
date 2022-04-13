@@ -21,7 +21,7 @@ GNU Bison has been installed on any particular system, one may be able to find t
 within the following sub-directory of the location into which GNU Bison has been installed;
 
 ```
-bison/skeletons
+share/bison/skeletons
 ```
 
 For GNU Bison 3.8, the Skeleton files which are available are;
@@ -154,7 +154,7 @@ If the person who is configuring the package wants to explicitly set the GNU Bis
 An example invocation is shown below;
 
 ```
-configre ... --with-bison-skeleton=/usr/local/bison-3.8/bison/skeletons/lalr1.cc
+configre ... --with-bison-skeleton=/usr/local/bison-3.8/share/bison/skeletons/glr.c
 ```
 
 
