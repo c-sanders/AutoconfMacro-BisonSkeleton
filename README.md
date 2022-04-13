@@ -90,8 +90,8 @@ As at 12 April 2022, the macro was implemented as follows;
 25     )
 26     AS_CASE(
 27       [${withval}],
-28       [yes], [BISON_SKELETON="lalr1.c"],
-29       [no],  [BISON_SKELETON="lalr1.c"],
+28       [yes], [BISON_SKELETON="lalr1.cc"],
+29       [no],  [BISON_SKELETON="lalr1.cc"],
 30       [BISON_SKELETON="${withval}"]
 31     )
 32     AC_SUBST(BISON_SKELETON)
@@ -111,20 +111,24 @@ This is what is actually responsible for the definition of the macro.
 
 - ```AC_ARG_WITH```
 
-This informs GNU Autoconf that an external package with a specific name, may be required by the configurer of the current package.
+This informs GNU Autoconf that an external package with a specific name, may be required by the user of the configure script.
 
-1) The first argument on line 16 declares the specific name for the external package which may be required by the configurer of the current package. The value of this first argument also helps to form the name for the ```--with``` option which will be associated with this macro. Seeing as the value specified here is ```bison-skeleton```, the resulting ```--with``` option for this macro will be ```--with-bison-skeleton```.
+1) The first argument on line 16 declares the specific name for the external package which may be required by the user of the configure script. The value of this first argument also helps to form the name for the ```--with``` option which will be associated with this macro. Seeing as the value specified here is ```bison-skeleton```, the resulting ```--with``` option for this macro will be called ```--with-bison-skeleton```.
 
-2) The second argument on lines 17-22 defines how the ```--with``` option for this macro will be presented to the user of the configure script.
+2) The second argument on lines 17-22 defines how the ```--with-bison-skeleton``` option for this macro will be presented to the user of the configure script.
 
-3) The third argument on line 23 specifies what actions to take if the user of the configure script specifies a value for the ```--with-bison-skeleton``` option.
+3) The third argument on line 23 specifies what actions the macro should take if the user of the configure script specifies a value for the ```--with-bison-skeleton``` option.
 
-4) The fourth argument on line 24 specifies what actions to take if the user of the configure script does not specify a value for the ```--with-bison-skeleton``` option.
+4) The fourth argument on line 24 specifies what actions the macro should take if the user of the configure script does not specify a value for the ```--with-bison-skeleton``` option.
 
 
 - ```AS_CASE```
 
- This processes the 
+This implements a switch statement which processes the value that was passed to the ```--with-bison-skeleton``` by the user of the configure script.
+ 
+1) The first argument on line 27 instructs the macro as to what value it should switch on.
+
+2) The second argument on line 28 instructs the macro to set the environment variable ```BISON_SKELETON``` to GNU Bison Skeleton file ```lalr1.cc``` if a value of "yes" was passed to the ```--with-bison-skeleton``` option 
 
 
 
