@@ -33,11 +33,11 @@ For GNU Bison 3.8, the Skeleton files which are available are;
 
 ### 3) Invoking the macro
 
-In order for a GNU Autotools package to use this macro properly, the package must invoke the macro
+In order for a GNU Autotools project to use this macro properly, the project must invoke the macro
 from within its ```configure.ac``` file as follows;
 
 ```
-AX_BISON_SKELETON()
+AX_BISON_SKELETON([])
 ```
 
 If the GNU Autotools are able to successfully process a project which uses this macro, then they
@@ -51,7 +51,7 @@ following configure script option should show up when this configure script is i
 --with-bison-skeleton=[bison_skeleton]
                         instruct GNU Bison to use the specified Skeleton
                         file
-                        (ARG=lalr1.cc)
+                        (ARG=glr.cc)
 ```
 
 
@@ -106,12 +106,12 @@ This is what is actually responsible for the definition of the macro.
 1) The first argument on line 12 declares the name of the macro which is being defined, i.e.
 ```AX_BISON_SKELETON```.
 
-2) The second argument on lines 14-33, define the body of the macro.
+2) The second argument on lines 14-33, defines the body of the macro.
 
 
 - ```AC_ARG_WITH```
 
-This informs GNU Autoconf that an external package with a specific name, may be required by the user of the configure script.
+This instructs GNU Autoconf to make available to the user of the configure script, the option of specifying an external package with a specific name.
 
 1) The first argument on line 16 declares the specific name for the external package which may be required by the user of the configure script. The value of this first argument also helps to form the name for the ```--with``` option which will be associated with this macro. Seeing as the value specified here is ```bison-skeleton```, the resulting ```--with``` option for this macro will be called ```--with-bison-skeleton```.
 
@@ -135,17 +135,25 @@ This implements a switch statement which processes the value that was passed to 
 4) The fourth argument on line 30 instructs the macro to set the environment variable ```BISON_SKELETON``` to the value which was passed to the ```--with-bison-skeleton``` option by the user of the configure script. This macro does not check to see if the value which was passed to this option is valid or not, so the user of the configure script needs to be careful as to what values they pass it!
 
 
+### 4) Behaviour of the macro
+
+- By the person maintaining the package
+
+- By the person maintaining the package
+
 ### 4) Usage of the macro
 
 - By the person maintaining the package
 
-If the package which is to be configured by the GNU Autotools, does - or even might, need the user running the configure script to specify which GNU Bison Skeleton file should be used, then this macro will need to be invoked from within the package's ```configure.ac``` file.
+If the project which is to be configured by the GNU Autotools, does - or even might, need the user running the configure script to specify which GNU Bison Skeleton file should be used, then this macro will need to be invoked from within the package's ```configure.ac``` file.
 
 It should be invoked from within the package's ```configure.ac``` file in a manner which is similar to the following;
 
 ```
 AX_BISON_SKELETON(["glr.c"])
 ```
+
+Notice how the macro is invoked with an argument, in this case the value ```"glr.cc"```. If such an argument is specified by the package maintainer, then this will be used by the macro as the default value for the GNU Bison Skeleton file. That is, if the 
 
 - By the person configuring the package
 
