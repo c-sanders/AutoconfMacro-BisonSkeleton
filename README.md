@@ -17,7 +17,7 @@ is, this package wouldn't exist if it wasn't for this macro.
 
 The purpose of this macro, is to enable the GNU Autotools to ascertain if a GNU Bison Skeleton file should be used for the configuration and building of a particular project. In the case where a Skeleton file should be used, the name of the desired Skeleton file can be passed as an argument to this macro.
 
-If it is ascertained that a Skeleton file should indeed be used, and the value of it has been specified, then the ```AX_BISON_SKELETON``` will set an environment variable called ```BISON_SKELETON``` with the name of the Skeleton file which should be used.
+If it is ascertained that a Skeleton file should indeed be used, and the name of it has been specified, then the ```AX_BISON_SKELETON``` macro will set an environment variable called ```BISON_SKELETON``` with the name of the Skeleton file which should be used by the project.
 
 
 ### 3) GNU Bison Skeleton files
