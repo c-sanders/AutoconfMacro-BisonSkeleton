@@ -74,14 +74,14 @@ AS_HELP_STRING(
 
 ## 2) Using the macro.
 
-Broadly speaking, people who will use this macro - or any GNU Autoconf macro for that matter, can be divided up into one of two categories, depending upon how they use the macros. They can be classified as using macros either directly or indirectly.
+Broadly speaking, people who will use this macro - or any GNU Autoconf macro for that matter, can be divided up into two categories, depending upon how they use the macros. They can be classified as using macros either indirectly or directly.
 
-  1) Package maintainers
-  2) Package users
+  1) Package maintainers - Indirect users of macros
+  2) Package users - Direct users of macros
 
-Package maintainers use the macrodon't actually use the macro in the sense that they don't actually execute it - they simly reference it within their package's ```configure.ac``` file.
+Package maintainers can be thought of as using macros in an indirect sense. What this means is that they don't actually execute or run the macros - rather, they just reference them in the ```configure.ac``` files that they write for their package.
 
-On the other hand, Package users do actually use the macro in the sense that was stated previously. When the run a package's configure script, they will execute the code that forms the macro.
+Package users on the other hand, can be thought of as using macros in a direct sense. What this means is that they do actually execute or run the macos. When a Package user runs a package's configure script, they will be directly executing any macros that have been referenced by that package's ```configure.ac``` file.
 
 
 ## 3) Package maintainers : The people who reference this macro.
