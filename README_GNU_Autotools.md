@@ -3,7 +3,7 @@ Filename : README_GNU_Autotools.md
 
 ## 1) Introduction.
 
-Consider the definition of the following GNU Autoconf macro.
+GNU Autoconf macros can be classified as being either non configurable or configurable. But what does this mean exactly? To help try and explain the concept, consider the definition of the following GNU Autoconf macro.
 
 ```
 AC_DEFUN(
@@ -28,16 +28,16 @@ AC_DEFUN(
 This GNU Autoconf macro - which from now onwards will simply be referred to as a macro, is very basic in its nature. It doesn't do anything more than what its comments state; and that is to set the value of the variable named ```TEST_MACRO_VARIABLE``` and then register it, so that the variable can be seen and used by other code outside of the macro.
 
 
-### 1.1) Non configurable and configurable macros.
-
   - Non configurable macros.
 
-The macro which was listed above, is a non configurable macros. That is, neither a Package maintainer nor a Package user is able to configure this macro. By this, it is meant that configuration information cannot be passed to this macro, and it is for this reason that this macro doesn't provide any command line information on how to use it. That is, if a package uses this macro, and a user of this package invokes its configure script with the ```--help``` command line option, then they won't get any information on how to use this macro. The reason for this, is because the macro doesn't provide any configuration options, and because it doesn't provide any configuration options, it doesn't need to inform any Package user of them.
+The macro which is listed above is a non configurable macro. This shouldn't come as a massive surprise, as there isn't anything in the body of the macro code for a potential user of the macro to configure! The macro itself sets the value of the variable, and then registers that same variable with GNU Autoconf. There is no way for a user of this macro to set the value of the variable ```TEST_MACRO_VARIABLE```, whether it be a Package maintainer or a Package user. Not only that, there is no way to pass configuration information into this macro in the first place, because the macro doesn't contain any functionality which allows it to do so. So this is what is meant, when the macro is referred to as being non configurable.
+
+Since this macro is non configurable, it doesn't provide any command line information on how to use it; afterall, it doesn't need to. That is, if a package uses this macro, and a user of this same package invokes its configure script with the ```--help``` command line option, then the user won't receive any information on how to use this macro.
 
 
   - Configurable macros.
 
-If the macro which was listed above, might require configuration information to be passed to it, then it should have additional code added to it which can facilitate this functionality. The body of the macro would need to invoke the GNU Autoconf ```AC_ARG_WITH``` macro.
+If the macro which is listed above in Code listing no. 1, might require configuration information to be passed to it, then it should have additional code added to it which will allow it to facilitate this functionality. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to the following;
 
 ```
 AC_DEFUN(
