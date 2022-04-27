@@ -23,6 +23,7 @@ AC_DEFUN(
   ]
 )
 ```
+  - Code listing no. 1
 
 This GNU Autoconf macro - which from now onwards will simply be referred to as a macro, is very basic in its nature. It doesn't do anything more than what its comments state; and that is to set the value of the variable named ```TEST_MACRO_VARIABLE``` and then register it, so that the variable can be seen and used by other code outside of the macro.
 
@@ -68,6 +69,7 @@ AS_HELP_STRING(
   ]
 )
 ```
+  - Code listing no. 2
 
 
 ## 2) Using the macro.
