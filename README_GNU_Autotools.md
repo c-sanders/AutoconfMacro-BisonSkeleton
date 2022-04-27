@@ -24,7 +24,12 @@ AC_DEFUN(
 )
 ```
 
-This GNU Autoconf macro - which from now onwards will simply be referred to as a macro, is very basic in its nature. It doesn't do anything more than what its comments state; and that is to set the value of a variable and then register it, so that the variable can be seen and used by other code outside of the macro.
+This GNU Autoconf macro - which from now onwards will simply be referred to as a macro, is very basic in its nature. It doesn't do anything more than what its comments state; and that is to set the value of the variable named ```TEST_MACRO_VARIABLE``` and then register it, so that the variable can be seen and used by other code outside of the macro.
+
+
+### 1.1) User configurable macros vs non user configurable macros.
+
+It should be noted that this macro doesn't provide any command line information on how to use it. That is, if a package uses this macro, and a user of this package invokes its configure script with the ```--help``` command line option, then they won't get any information on how to use this macro. The reason for this, is because the macro doesn't provide any configuration options, and because it doesn't provide any configuration options, it doesn't need to inform any Package user of them.
 
 
 ## 2) Using the macro.
@@ -34,9 +39,9 @@ Broadly speaking, two sets of people will use this macro.
   1) Package maintainers
   2) Package users
 
-???
-In some ways, the Package maintainers use the macro in a more direct sense. Afterall, they are the ones 
-???
+Package maintainers don't actually use the macro in the sense that they don't actually execute it - they simly reference it within their package's ```configure.ac``` file.
+
+On the other hand, Package users do actually use the macro in the sense that was stated previously. When the run a package's configure script, they will execute the code that forms the macro.
 
 
 ## 3) Package maintainers : The people who reference this macro.
@@ -54,5 +59,9 @@ When a Package maintainer is ready to distribute their package to users, all of 
 
 ## 3) Package users : The people who execute this macro.
 
+### 3.1) Macros that can't be configured.
+
 When the user of this package executes its configure script with the ```--help``` command line option, the user won't see any information on how to use this macro.
-```
+
+
+### 3.2) Macros that can be configured.
