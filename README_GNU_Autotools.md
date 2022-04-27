@@ -3,12 +3,12 @@ Filename : README_GNU_Autotools.md
 
 ## 1) Introduction.
 
-Consider the definition of the following GNU Autotools macro.
+Consider the definition of the following GNU Autoconf macro.
 
 ```
 AC_DEFUN(
 
-  [AX_TEST_MACRO_A],
+  [AX_TEST_MACRO],
 
   [
     # Set the variable and then instruct GNU Autoconf to register it with the
@@ -17,9 +17,9 @@ AC_DEFUN(
     # If the variable isn't registered, then it won't be able to be seen or be
     # used by other code outside of this macro.
 
-    TEST_MACRO_A_VARIABLE="Hello, World!"
+    TEST_MACRO_VARIABLE="Hello, World!"
 
-    AC_SUBST([TEST_MACRO_A_VARIABLE])
+    AC_SUBST([TEST_MACRO_VARIABLE])
   ]
 )
 ```
@@ -27,25 +27,21 @@ AC_DEFUN(
 This GNU Autoconf macro - which from now onwards will simply be referred to as a macro, is very basic in its nature. It doesn't do anything more than what its comments state; and that is to set the value of a variable and then register it so that it can be seen and used by other code outside of the macro.
 
 
-## 2) How to process this package.
+## 2) Invoking this macro by a Package maintainer.
 
-This package is designed to be processed by the GNU Autotools suite of tools, and the remainder of
-this section of the document, will explain how to do just that. Processing the package in the manner
-which is described below, will cause it to become a GNU Autotools project.
-
-To begin the process of turning this package into a GNU Autotools project, change into the top-level
-directory into which the package was installed. Then, execute the following two commands from within
-it;
+If the maintainer of a package wants to use this macro in their particular package, then the macro will need to be invoked from the package's ```configure.ac``` file, in a manner which is similar to the following;
 
 ```
-> libtoolize
-> autoreconf
+AX_TEST_MACRO()
 ```
 
-The ```autoreconf``` utility may complain that a number of required files cannot be found. If this
-is the case, don't worry about it, because ```autoreconf``` also informs us that this problem can
-be rectified by executing the following command;
+Once the package's ```configure.ac``` file has been finalised, the Package maintainer should generate a configure script for their package, using the ```autoreconf``` command to do so.
 
-```
-> automake --add-missing
+
+## 3) Executing this macro by the Package user.
+
+
+The maintainer of the package 
+
+When the user of this package 
 ```
