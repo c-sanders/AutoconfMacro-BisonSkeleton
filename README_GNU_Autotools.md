@@ -69,7 +69,7 @@ AS_HELP_STRING(
   ]
 )
 ```
-  - Code listing no. 2
+> Code listing no. 2
 
 
 ## 2) Using the macro.
