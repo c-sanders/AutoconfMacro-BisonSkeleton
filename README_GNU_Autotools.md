@@ -34,23 +34,25 @@ Broadly speaking, two sets of people will use this macro.
   1) Package maintainers
   2) Package users
 
-Package maintainers deal more directly with the 
+???
+In some ways, the Package maintainers use the macro in a more direct sense. Afterall, they are the ones 
+???
 
 
-## 3) Package maintainers : Invoking this macro.
+## 3) Package maintainers : The people who reference this macro.
 
-If a Package maintainer wants to use this macro in their particular package, then the macro will need to be invoked from within the package's ```configure.ac``` file. This can be done in a manner which is similar to the following invocation;
+If a Package maintainer wants to use this macro in their particular package, then the macro will need to be referenced from within the package's ```configure.ac``` file. This can be done in a manner which is similar to the following;
 
 ```
 AX_TEST_MACRO()
 ```
 
-Once the package's ```configure.ac``` file has been finalised, the Package maintainer should generate a configure script for their package, using the GNU Autotools ```autoreconf``` command to do so.
+Once a package's ```configure.ac``` file has been finalised, the Package maintainer should generate a configure script for the package, using the GNU Autotools ```autoreconf``` command to do so.
 
-When a package is ready for distribution to users, all of the files which are to form the package should be "rolled up" into either a ```.tar.gz``` or ```.tar.bz2``` file. It is these ```.tar.gz``` or ```.tar.bz2``` files which form the actual package for the project. A key file which 
+When a Package maintainer is ready to distribute their package to users, all of the files which are to form the package should be "rolled up" into an archive file for ease of distribution. It is these archive files which form the actual package for the project, and a key file in any package should be its configure script.
 
 
-## 3) Executing this macro by a Package user.
+## 3) Package users : The people who execute this macro.
 
 When the user of this package executes its configure script with the ```--help``` command line option, the user won't see any information on how to use this macro.
 ```
