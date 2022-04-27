@@ -86,7 +86,7 @@ Package users on the other hand, can be thought of as using macros in a direct s
 
 ## 3) Package maintainers : The people who reference this macro.
 
-If a Package maintainer wants to use this macro in their particular package, then the macro will need to be referenced from within the package's ```configure.ac``` file. This can be done in a manner which is similar to the following;
+If a Package maintainer wanted to use the ```AX_TEST_MACRO``` macro in their particular package, then the macro will need to be referenced from within their package's ```configure.ac``` file. This can be done in a manner which is similar to the following;
 
 ```
 AX_TEST_MACRO()
