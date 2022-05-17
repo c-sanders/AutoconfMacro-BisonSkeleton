@@ -8,7 +8,7 @@ GNU Autoconf macros can be classified as being either non configurable or config
 
 ## 2) Non configurable and configurable macros.
 
-Let us first consider non configurable macros. After we are done discussing them, we will then move
+Let us first consider non configurable macros. After we are done discussing them, we will then turn
 our attention to configurable macros.
 
 
@@ -75,7 +75,7 @@ If the macro which was listed above in Code listing no. 1, might require configu
 25
 26     AC_SUBST([TEST_MACRO_VARIABLE])
 27   ]
-28 s)
+28 )
 ```
 > Code listing no. 2
 
@@ -105,11 +105,11 @@ Once a package's ```configure.ac``` file has been finalised, the Package maintai
 When a Package maintainer is ready to distribute their package to users, all of the files which are to form the package should be "rolled up" into an archive file for ease of distribution. It is these archive files which form the actual package for the project, and a key file in any package should be its configure script.
 
 
-## 3) Package users : The people who execute this macro.
+## 4) Package users : The people who execute this macro.
 
-### 3.1) Macros that can't be configured.
+### 4.1) Macros that can't be configured.
 
 When the user of this package executes its configure script with the ```--help``` command line option, the user won't see any information on how to use this macro.
 
 
-### 3.2) Macros that can be configured.
+### 4.2) Macros that can be configured.
