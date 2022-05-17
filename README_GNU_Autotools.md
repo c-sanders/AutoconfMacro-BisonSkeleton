@@ -92,7 +92,7 @@ Package maintainers can be thought of as using macros in an indirect sense. What
 Package users on the other hand, can be thought of as using macros in a direct sense. What this means is that they do actually execute or run the macos. When a Package user runs a package's configure script, they will be directly executing any macros that have been referenced by that package's ```configure.ac``` file.
 
 
-## 3) Package maintainers : The people who reference this macro.
+### 2.1) Package maintainers : The people who reference this macro.
 
 If a Package maintainer wanted to use the ```AX_TEST_MACRO``` macro in their particular package, then the macro will need to be referenced from within their package's ```configure.ac``` file. This can be done in a manner which is similar to the following;
 
@@ -105,11 +105,11 @@ Once a package's ```configure.ac``` file has been finalised, the Package maintai
 When a Package maintainer is ready to distribute their package to users, all of the files which are to form the package should be "rolled up" into an archive file for ease of distribution. It is these archive files which form the actual package for the project, and a key file in any package should be its configure script.
 
 
-## 4) Package users : The people who execute this macro.
+### 2.2) Package users : The people who execute this macro.
 
-### 4.1) Macros that can't be configured.
+#### 2.2.1) Macros that can't be configured.
 
 When the user of this package executes its configure script with the ```--help``` command line option, the user won't see any information on how to use this macro.
 
 
-### 4.2) Macros that can be configured.
+#### 2.2.2) Macros that can be configured.
