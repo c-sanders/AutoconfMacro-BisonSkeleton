@@ -39,7 +39,7 @@ Since this macro is non configurable, it doesn't provide any command line inform
 
 ### 1.2) Configurable macros.
 
-If the macro which is listed above in Code listing no. 1, might require configuration information to be passed to it, then it should have additional code added to it which will allow it to facilitate this functionality. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to the following;
+If the macro which was listed above in Code listing no. 1, might require configuration information to be passed to it, then it should have additional code added to it which will allow it to facilitate this functionality. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to the following;
 
 ```
 01 AC_DEFUN(
@@ -59,17 +59,12 @@ If the macro which is listed above in Code listing no. 1, might require configur
 15       [TEST_MACRO_VARIABLE=""]
 16     )
 17
-18     # Set the variable and then instruct GNU Autoconf to register it with the
-19     # configure script which GNU Autoconf will generate.
-20     #
 21     # If the variable isn't registered, then it won't be able to be seen or be
 22     # used by other code outside of this macro.
-23 
-34     TEST_MACRO_VARIABLE="Hello, World!"
-25
-26     AC_SUBST([TEST_MACRO_VARIABLE])
-27   ]
-28 )
+23
+24     AC_SUBST([TEST_MACRO_VARIABLE])
+25   ]
+26 )
 ```
 > Code listing no. 2
 
