@@ -8,7 +8,7 @@ GNU Autoconf macros can be classified as being either non configurable or config
 
 ## 2) Non configurable and configurable macros.
 
-Let us first consider non configurable macros. After we are done discussing them, we will turn
+Let us first consider non configurable macros. After we are done discussing them, we will then turn
 our attention to configurable macros.
 
 
@@ -62,10 +62,10 @@ If the macro which was listed above in Code listing no. 1, might require configu
 12 )
 13       ],
 14       [TEST_MACRO_VARIABLE=${withval}],
-15       [TEST_MACRO_VARIABLE=""]
+15       [TEST_MACRO_VARIABLE="Hello, World!"]
 16     )
 17
-18     # The call to AC_ARG_WITH should have set the value of the variable
+18     # The call to AC_ARG_WITH will have set the value of the variable
 19     # TEST_MACRO_VARIABLE.
 20
 21     # Instruct GNU Autoconf to register the variable with the configure script.
