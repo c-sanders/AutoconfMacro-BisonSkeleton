@@ -91,7 +91,7 @@ Broadly speaking, people who will use this macro - or any GNU Autoconf macro for
 
 ### Package maintainers.
 
-Package maintainers can be thought of as using macros in an indirect sense. What this means is that they don't actually execute or run the macros - rather, they just reference them in the ```configure.ac``` files that they write for their package. Even when a Package maintainer uses GNU Autoconf to generate a configure script for their package, they are still not executing or running the macros. All that GNU Autoconf is actually doing is copying the code for the macros into the resulting configure script.
+Package maintainers can be thought of as using macros in an indirect sense. What this means is that they don't actually execute or run the macros - rather, they just reference them in the ```configure.ac``` files that they write for their package. Even when a Package maintainer uses GNU Autoconf to generate a configure script for their package, they are still not executing or running the macros. All that GNU Autoconf is actually doing is copying the code for the macros into the package's resulting configure script.
 
 ### Package users.
 
