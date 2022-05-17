@@ -6,22 +6,22 @@ Filename : README_GNU_Autotools.md
 GNU Autoconf macros can be classified as being either non configurable or configurable. But what does this mean exactly? To help try and explain the concept, consider the definition of the following GNU Autoconf macro.
 
 ```
-AC_DEFUN(
-
-  [AX_TEST_MACRO],
-
-  [
-    # Set the variable and then instruct GNU Autoconf to register it with the
-    # configure script which GNU Autoconf will generate.
-    #
-    # If the variable isn't registered, then it won't be able to be seen or be
-    # used by other code outside of this macro.
-
-    TEST_MACRO_VARIABLE="Hello, World!"
-
-    AC_SUBST([TEST_MACRO_VARIABLE])
-  ]
-)
+01 AC_DEFUN(
+02
+03  [AX_TEST_MACRO],
+04
+05   [
+06     # Set the variable and then instruct GNU Autoconf to register it with the
+07     # configure script which GNU Autoconf will generate.
+08     #
+09     # If the variable isn't registered, then it won't be able to be seen or be
+10     # used by other code outside of this macro.
+11
+12     TEST_MACRO_VARIABLE="Hello, World!"
+13
+14     AC_SUBST([TEST_MACRO_VARIABLE])
+15   ]
+16 )
 ```
 > Code listing no. 1
 
