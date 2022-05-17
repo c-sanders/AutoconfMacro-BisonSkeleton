@@ -45,7 +45,7 @@ Since this macro is non configurable, it doesn't provide any command line inform
 
 ### 2.2) Configurable macros.
 
-If the macro which was listed above in Code listing no. 1, might require configuration information to be passed to it, then it should have additional code added to it which will allow it to facilitate this functionality. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to the following;
+If the macro which was listed above in Code listing no. 1, might require configuration information to be passed to it, then it should have additional code added to it which will allow it to facilitate this functionality. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to that shown in lines 6 -> 16 below. 
 
 ```
 01 AC_DEFUN(
@@ -78,6 +78,8 @@ If the macro which was listed above in Code listing no. 1, might require configu
 28 )
 ```
 > Code listing no. 2
+
+A point which is worth mentioning about the code above, is the alignment of the ```AS_HELP_STRING``` macro. If the call to this macro is preceeded by leading whitespace, then the help string will be out of place when a user invokes ```configure --help``` on any package which uses this macro.
 
 
 ## 2) Using the macro.
