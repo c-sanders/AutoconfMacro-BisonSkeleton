@@ -6,7 +6,10 @@ Filename : README_GNU_Autotools.md
 GNU Autoconf macros can be classified as being either non configurable or configurable. But what does this mean exactly? To help try and explain the difference between the two categories, the next two sections will discuss each of them in turn.
 
 
-### 1.1) Non configurable macros.
+## 2) Non configurable and configurable macros.
+
+
+### 2.1) Non configurable macros.
 
 Consider the definition of the following non configurable GNU Autoconf macro.
 
@@ -37,7 +40,7 @@ As was stated above, the macro which is defined in Code listing no. 1 implements
 Since this macro is non configurable, it doesn't provide any command line information on how to use it; afterall, it doesn't need to. That is, if a package uses this macro, and a user of this same package invokes its configure script with the ```--help``` command line option, then the user won't receive any information on how to use this macro.
 
 
-### 1.2) Configurable macros.
+### 2.2) Configurable macros.
 
 If the macro which was listed above in Code listing no. 1, might require configuration information to be passed to it, then it should have additional code added to it which will allow it to facilitate this functionality. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to the following;
 
@@ -59,12 +62,17 @@ If the macro which was listed above in Code listing no. 1, might require configu
 15       [TEST_MACRO_VARIABLE=""]
 16     )
 17
-21     # If the variable isn't registered, then it won't be able to be seen or be
-22     # used by other code outside of this macro.
-23
-24     AC_SUBST([TEST_MACRO_VARIABLE])
-25   ]
-26 )
+18     # The call to AC_ARG_WITH should have set the value of the variable
+19     # TEST_MACRO_VARIABLE.
+20
+21     # Instruct GNU Autoconf to register the variable with the configure script.
+22     #
+23     # If the variable isn't registered, then it won't be able to be seen or be
+24     # used by other code outside of this macro.
+25
+26     AC_SUBST([TEST_MACRO_VARIABLE])
+27   ]
+28 s)
 ```
 > Code listing no. 2
 
