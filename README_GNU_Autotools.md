@@ -3,10 +3,13 @@ Filename : README_GNU_Autotools.md
 
 ## 1) Introduction.
 
-GNU Autoconf macros can be classified as being either non configurable or configurable. But what does this mean exactly? To help try and explain the difference between the two categories, the next two sections will discuss each of them in turn.
+GNU Autoconf macros can be classified as being either non configurable or configurable. But what does this mean exactly? To help try and explain the difference between the two categories, the next section will discuss each of them in turn.
 
 
 ## 2) Non configurable and configurable macros.
+
+Let us first consider non configurable macros. After we are done discussing them, we will then move
+on to configurable macros.
 
 
 ### 2.1) Non configurable macros.
