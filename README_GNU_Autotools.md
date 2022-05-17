@@ -9,7 +9,7 @@ GNU Autoconf macros can be classified as being either non configurable or config
 ## 2) Non configurable and configurable macros.
 
 Let us first consider non configurable macros. After we are done discussing them, we will then move
-on to configurable macros.
+our attention to configurable macros.
 
 
 ### 2.1) Non configurable macros.
