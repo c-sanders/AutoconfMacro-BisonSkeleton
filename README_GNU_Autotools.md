@@ -79,7 +79,7 @@ If the macro which was listed above in Code listing no. 1, might require configu
 ```
 > Code listing no. 2
 
-A point which is worth mentioning about the code above, is the alignment of the ```AS_HELP_STRING``` macro. If the call to this macro is preceeded by leading whitespace, then the help string will be out of place when a user invokes ```configure --help``` on any package which uses this macro.
+A point needs to be made about the the code which is listed above, and that is with regard to the alignment of the ```AS_HELP_STRING``` macro. If the call to this macro is preceded by leading whitespace, then the help string will appear out of alignment when a user invokes ```configure --help``` on any package which uses this macro.
 
 
 ## 2) Using the macro.
