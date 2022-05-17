@@ -42,34 +42,34 @@ Since this macro is non configurable, it doesn't provide any command line inform
 If the macro which is listed above in Code listing no. 1, might require configuration information to be passed to it, then it should have additional code added to it which will allow it to facilitate this functionality. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to the following;
 
 ```
-AC_DEFUN(
-
-  [AX_TEST_MACRO],
-
-  [
-    AC_ARG_WITH(
-      [test-macro],
-      [
-AS_HELP_STRING(
-[--with-value=@<:@variable_value@:>@],
-[instruct the macro to set the variable to the specified value]
-)
-      ],
-      [TEST_MACRO_VARIABLE=${withval}],
-      [TEST_MACRO_VARIABLE=""]
-    )
-
-    # Set the variable and then instruct GNU Autoconf to register it with the
-    # configure script which GNU Autoconf will generate.
-    #
-    # If the variable isn't registered, then it won't be able to be seen or be
-    # used by other code outside of this macro.
-
-    TEST_MACRO_VARIABLE="Hello, World!"
-
-    AC_SUBST([TEST_MACRO_VARIABLE])
-  ]
-)
+01 AC_DEFUN(
+02
+03  [AX_TEST_MACRO],
+04
+05  [
+06     AC_ARG_WITH(
+07       [test-macro],
+08       [
+09 AS_HELP_STRING(
+10 [--with-value=@<:@variable_value@:>@],
+11 [instruct the macro to set the variable to the specified value]
+12 )
+13       ],
+14       [TEST_MACRO_VARIABLE=${withval}],
+15       [TEST_MACRO_VARIABLE=""]
+16     )
+17
+18     # Set the variable and then instruct GNU Autoconf to register it with the
+19     # configure script which GNU Autoconf will generate.
+20     #
+21     # If the variable isn't registered, then it won't be able to be seen or be
+22     # used by other code outside of this macro.
+23 
+34     TEST_MACRO_VARIABLE="Hello, World!"
+25
+26     AC_SUBST([TEST_MACRO_VARIABLE])
+27   ]
+28 )
 ```
 > Code listing no. 2
 
