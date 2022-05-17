@@ -93,6 +93,8 @@ Broadly speaking, people who will use this macro - or any GNU Autoconf macro for
 
 Package maintainers can be thought of as using macros in an indirect sense. What this means is that they don't actually execute or run the macros - rather, they just reference them in the ```configure.ac``` files that they write for their package. Even when the Package maintainer uses the ```GNU Autotools``` to generate the configure script for their package, they are still not executing or running the macros. All that the ```GNU Autotools``` actually do is copy the code for the macros into the resulting configure script.
 
+- Package users.
+
 Package users on the other hand, can be thought of as using macros in a direct sense. What this means is that they do actually execute or run the macos. When a Package user runs a package's configure script, they will be directly executing any macros that have been referenced by that package's ```configure.ac``` file.
 
 
