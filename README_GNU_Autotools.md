@@ -84,7 +84,7 @@ A point needs to be made about the the code which is listed above, and that is w
 
 ## 2) Using the macro.
 
-Broadly speaking, people who will use this macro - or any GNU Autoconf macro for that matter, can be divided up into two categories, depending upon how they use the macros. They can be classified as using macros either indirectly or directly.
+Broadly speaking, people who will use this macro - or any GNU Autoconf macro for that matter, can be divided up into two categories, depending upon how they use the macros. They can be categorised as using macros either indirectly or directly.
 
   1) Indirect users of macros -> Package maintainers
   2) Direct users of macros   -> Package users
