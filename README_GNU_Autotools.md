@@ -43,7 +43,7 @@ As was stated above, the macro which is defined in Code listing no. 1 implements
 Since this macro is non configurable, it doesn't provide any command line information on how to use it; afterall, it doesn't need to. That is, if a package uses this macro, and a user of this same package invokes its configure script with the ```--help``` command line option, then the user won't receive any information on how to use this macro.
 
 ```
-001 `configure' configures SimpleScanner 0.0.1 to adapt to many kinds of systems.
+001 `configure' configures SimpleAutotoolsProject 0.0.1 to adapt to many kinds of systems.
 002
 003 Usage: ./configure [OPTION]... [VAR=VALUE]...
 004
@@ -162,6 +162,7 @@ Since this macro is non configurable, it doesn't provide any command line inform
 117 Report bugs to the package provider.
 ```
 
+Note in the ```Optional Features:``` section of the output on lines 66 -> 79, and also the ```Optional Packages:``` section of the output on lines 82 -> 91, that there is no mention of the ... 
 
 ### 2.2) Configurable macros.
 
