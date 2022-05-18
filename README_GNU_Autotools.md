@@ -79,7 +79,7 @@ If the macro which was listed above in Code listing no. 1, might require configu
 ```
 > Code listing no. 2
 
-A point needs to be made about the the code which is listed above, and that is with regard to the alignment of the ```AS_HELP_STRING``` macro. Notice how the call to this macro does not lineup with the surrounding code in respect to indentation; that is, it is not preceded by any whitespace. If it were, then the associated help string would appear out of alignment when a user invokes ```configure --help``` on any package which uses this macro.
+A point needs to be made about the the code which is listed above, and that is with regard to the alignment of the ```AS_HELP_STRING``` macro. Notice how the call to this macro does not lineup with the surrounding code in respect to indentation; that is, it is not preceded by any whitespace. If it were, then the configure script help string which is associated with the ```AX_TEST_MACRO``` would appear out of alignment when a user invokes ```configure --help``` on any package which uses this macro.
 
 
 ## 2) Using the macro.
