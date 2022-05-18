@@ -92,7 +92,7 @@ Since this macro is non configurable, it doesn't provide any command line inform
 047   --infodir=DIR           info documentation [DATAROOTDIR/info]
 048   --localedir=DIR         locale-dependent data [DATAROOTDIR/locale]
 049   --mandir=DIR            man documentation [DATAROOTDIR/man]
-050   --docdir=DIR            documentation root [DATAROOTDIR/doc/simplescanner]
+050   --docdir=DIR            documentation root [DATAROOTDIR/doc/simpleautotoolsproject]
 051   --htmldir=DIR           html documentation [DOCDIR]
 052   --dvidir=DIR            dvi documentation [DOCDIR]
 053   --pdfdir=DIR            pdf documentation [DOCDIR]
@@ -204,7 +204,7 @@ If the macro which was listed above in Code listing no. 1, might require configu
 A point needs to be made about the the code which is listed above, and that is with regard to the alignment of the ```AS_HELP_STRING``` macro. Notice how the call to this macro does not lineup with the surrounding code in respect to indentation; that is, it is not preceded by any whitespace. If it were, then the configure script help string which is associated with the ```AX_TEST_MACRO``` would appear out of alignment when a user invokes ```configure --help``` on any package which uses this macro.
 
 ```
-001 `configure' configures SimpleScanner 0.0.1 to adapt to many kinds of systems.
+001 `configure' configures SimpleAutotoolsProject 0.0.1 to adapt to many kinds of systems.
 002
 003 Usage: ./configure [OPTION]... [VAR=VALUE]...
 004
@@ -253,7 +253,7 @@ A point needs to be made about the the code which is listed above, and that is w
 047   --infodir=DIR           info documentation [DATAROOTDIR/info]
 048   --localedir=DIR         locale-dependent data [DATAROOTDIR/locale]
 049   --mandir=DIR            man documentation [DATAROOTDIR/man]
-050   --docdir=DIR            documentation root [DATAROOTDIR/doc/simplescanner]
+050   --docdir=DIR            documentation root [DATAROOTDIR/doc/simpleautotoolsproject]
 051   --htmldir=DIR           html documentation [DOCDIR]
 052   --dvidir=DIR            dvi documentation [DOCDIR]
 053   --pdfdir=DIR            pdf documentation [DOCDIR]
