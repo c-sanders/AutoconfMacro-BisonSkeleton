@@ -201,7 +201,7 @@ If the macro which was listed above in Code listing no. 1, might require configu
 ```
 > Code listing no. 2
 
-A point needs to be made about the the code which is listed above, and that is with regard to the alignment of the ```AS_HELP_STRING``` macro. Notice how the call to this macro does not lineup with the surrounding code in respect to indentation; that is, it is not preceded by any whitespace. If it were, then the configure script help string which is associated with the ```AX_TEST_MACRO``` would appear out of alignment when a user invokes ```configure --help``` on any package which uses this mavcro.
+A point needs to be made about the the code which is listed above, and that is with regard to the alignment of the ```AS_HELP_STRING``` macro. Notice how the call to this macro does not lineup with the surrounding code in respect to indentation; that is, it is not preceded by any whitespace. If it were, then the configure script help string which is associated with the ```AX_TEST_MACRO``` would appear out of alignment when a user invokes ```configure --help``` on any package which uses this macro.
 
 ```
 001 `configure' configures SimpleScanner 0.0.1 to adapt to many kinds of systems.
@@ -326,6 +326,8 @@ A point needs to be made about the the code which is listed above, and that is w
 120 Report bugs to the package provider.
 ```
 > configure --help output no. 2
+
+Note in the ```Optional Packages:``` section of the output on line 93, that there is now a mention of how to use the AX_TEST_MACRO macro.
 
 ## 2) Using the macro.
 
