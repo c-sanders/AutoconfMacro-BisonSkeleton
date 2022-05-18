@@ -135,68 +135,31 @@ Since this macro is non configurable, it doesn't provide any command line inform
 090   --with-sysroot[=DIR]    Search for dependent libraries within DIR (or the
 091                           compiler's sysroot if not specified).
 092
-093   --with-flex-rootdir=[yes|no|path_to_flex]
-094                           Have the build process either; 1) use the first
-095                           instance of flex which is found within the user's
-096                           PATH (ARG=yes), ii) not use an instance of bison at
-097                           all (ARG=no), or iii) use the instance of bison
-098                           which resides at a specific loction
-099                           (ARG=path_to_bison)
-100
-101
-102   --with-bison-rootdir=[yes|no|path_to_bison]
-103                           instruct the build process to perform one (and only
-104                           one), of the following three options 1) use the
-105                           first instance of bison which is found within the
-106                           user's PATH (ARG=yes), 2) not use an instance of
-107                           bison at all (ARG=no), or 3) use the instance of
-108                           bison which resides at a specific loction
-109                           (ARG=path_to_bison)
-110
-111
-112   --with-bison-skeleton=[bison-skeleton]
-113                           instruct GNU Bison which Skeleton file to use
-114                           (ARG=bison_skeleton)
-115
+093 Some influential environment variables:
+094   CC          C compiler command
+095   CFLAGS      C compiler flags
+096   LDFLAGS     linker flags, e.g. -L<lib dir> if you have libraries in a
+097               nonstandard directory <lib dir>
+098   LIBS        libraries to pass to the linker, e.g. -l<library>
+099   CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I<include dir> if
+100               you have headers in a nonstandard directory <include dir>
+101   CXX         C++ compiler command
+102   CXXFLAGS    C++ compiler flags
+103   YACC        The `Yet Another Compiler Compiler' implementation to use.
+104               Defaults to the first program found out of: `bison -y', `byacc',
+105               `yacc'.
+106   YFLAGS      The list of arguments that will be passed by default to $YACC.
+107               This script will default YFLAGS to the empty string to avoid a
+108               default value of `-d' given by some make applications.
+109   LT_SYS_LIBRARY_PATH
+110               User-defined run-time library search path.
+111   CPP         C preprocessor
+112   CXXCPP      C++ preprocessor
+113
+114 Use these variables to override the choices made by `configure' or to help
+115 it to find libraries and programs with nonstandard names/locations.
 116
-117   --enable-bison-language-c
-118                           instruct GNU Bison to use C as the implementation
-119                           language for any Parser which it generates
-120
-121
-122   --enable-bison-language-cpp
-123                           instruct GNU Bison to use C++ as the implementation
-124                           language for any Parser which it generates
-125
-126
-127   --enable-test-macro-B   instruct GNU Autoconf to enable Test macro B
-128
-129
-130 Some influential environment variables:
-131   CC          C compiler command
-132   CFLAGS      C compiler flags
-133   LDFLAGS     linker flags, e.g. -L<lib dir> if you have libraries in a
-134               nonstandard directory <lib dir>
-135   LIBS        libraries to pass to the linker, e.g. -l<library>
-136   CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I<include dir> if
-137               you have headers in a nonstandard directory <include dir>
-138   CXX         C++ compiler command
-139   CXXFLAGS    C++ compiler flags
-140   YACC        The `Yet Another Compiler Compiler' implementation to use.
-141               Defaults to the first program found out of: `bison -y', `byacc',
-142               `yacc'.
-143   YFLAGS      The list of arguments that will be passed by default to $YACC.
-144               This script will default YFLAGS to the empty string to avoid a
-145               default value of `-d' given by some make applications.
-146   LT_SYS_LIBRARY_PATH
-147               User-defined run-time library search path.
-148   CPP         C preprocessor
-149   CXXCPP      C++ preprocessor
-150
-151 Use these variables to override the choices made by `configure' or to help
-152 it to find libraries and programs with nonstandard names/locations.
-153
-154 Report bugs to the package provider.
+117 Report bugs to the package provider.
 ```
 
 
