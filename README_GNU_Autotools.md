@@ -36,45 +36,45 @@ Consider the definition of the following non configurable GNU Autoconf macro.
 ```
 > Code listing no. 1
 
-This GNU Autoconf macro - which from now onwards will simply be referred to as a macro, is very basic in its nature. It implements a hypothetical macro which could be used by a configuration/build system, to ascertain which language any hypothetical plugins would be implemented in. It doesn't do anything more than what its comments state; and that is to set the value of the variable named ```PLUGIN_LANGUAGE``` and then register it. This second step is important, because if the variable isn't registered, then it won't be able to be seen and thus be used by other code outside of the macro.
+This GNU Autoconf macro - which from now onwards will simply be referred to as a macro, is very basic in its nature. It implements a hypothetical macro which could be used by a configuration/build system, to ascertain which language any hypothetical plugins would be implemented in. It doesn't do anything more than what its comments state; and that is to set the value of the variable named ```PLUGIN_LANGUAGE``` and then register it. This second task is important, because if the variable isn't registered, then it won't be able to be seen and thus be used by other code outside of the macro.
 
-As was stated above, the macro which is defined in Code listing no. 1 implements a non configurable macro. This shouldn't come as a massive surprise, as there isn't anything in the body of the macro code for a potential user of the macro to configure! The macro itself sets the value of the variable, and then registers that same variable with GNU Autoconf. There is no way for a user of this macro to set the value of the variable ```TEST_MACRO_VARIABLE```, whether it be a Package maintainer or a Package user. Not only that, there is no way to pass configuration information into this macro in the first place, because the macro doesn't contain any functionality which allows it to do so. So this is what is meant, when the macro is referred to as being non configurable.
+As was stated above, the macro which is defined in Code listing no. 1 implements a non configurable macro. This shouldn't come as a massive surprise, as there isn't anything in the body of the macro code for a potential user of the macro to configure! The macro itself sets the value of the variable, and then registers that same variable with GNU Autoconf. There is no way for a user of this macro to set the value of the variable ```PLUGIN_LANGUAGE```, whether it be a Package maintainer or a Package user. Not only that, there is no way to pass configuration information into this macro in the first place, because the macro doesn't contain any functionality which allows it to do so. So this is what is meant, when the macro is referred to as being non configurable.
 
 Since this macro is non configurable, it doesn't provide any command line information on how to use it; afterall, it doesn't need to. That is, if a package uses this macro, and a user of this same package invokes its configure script with the ```--help``` command line option, then the user won't receive any information on how to use this macro. 
 
 Consider the following simple ```configure.ac``` file. Note that it invokes the ```AX_TEST_MACRO``` macro. 
 
 ```
-# Process this file with GNU Autoconf to produce a
-# configure script.
-
-
-AC_INIT(
-        [SimpleAutotoolsProject],
-        [0.0.1]
-)
-
-AC_CONFIG_SRCDIR([src/main.cpp])
-
-m4_include([m4/ax_test_macro.m4])
-
-AC_CONFIG_AUX_DIR(config)
-
-AM_INIT_AUTOMAKE([subdir-objects])
-
-AC_CONFIG_MACRO_DIR([m4])
-
-AC_PROG_CC
-
-AC_PROG_CXX([${CXX}])
-
-AX_TEST_MACRO()
-
-AC_OUTPUT([Makefile])
+01 # Process this file with GNU Autoconf to produce a
+02 # configure script.
+03
+04
+05 AC_INIT(
+06         [SimpleAutotoolsProject],
+07         [0.0.1]
+08 )
+09
+10 AC_CONFIG_SRCDIR([src/main.cpp])
+11
+12 m4_include([m4/ax_test_macro.m4])
+13
+14 AC_CONFIG_AUX_DIR(config)
+15
+16 AM_INIT_AUTOMAKE([subdir-objects])
+17
+18 AC_CONFIG_MACRO_DIR([m4])
+19
+20 AC_PROG_CC
+21
+22 AC_PROG_CXX([${CXX}])
+23
+24 AX_TEST_MACRO()
+25
+26 AC_OUTPUT([Makefile])
 ```
 > Example configure.ac file
 
-If this ```configure.ac``` file were to be used to generate a configure script, and then this resulting configure script were to be invoked with the ```--help``` command line option, then the output should look something like the following.
+If this ```configure.ac``` file were to be used to generate a configure script, and this resulting configure script were to be invoked with the ```--help``` command line option, then the output would look something like the following.
 
 ```
 001 `configure' configures SimpleAutotoolsProject 0.0.1 to adapt to many kinds of systems.
