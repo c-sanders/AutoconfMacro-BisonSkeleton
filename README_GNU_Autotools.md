@@ -51,7 +51,8 @@ Consider the following simple ```configure.ac``` file. Note that it invokes the 
 
 AC_INIT(
         [SimpleAutotoolsProject],
-		 [0.0.1])
+        [0.0.1]
+)
 
 AC_CONFIG_SRCDIR([src/main.cpp])
 
@@ -65,15 +66,11 @@ AC_CONFIG_MACRO_DIR([m4])
 
 AC_PROG_CC
 
-AC_PROG_CXX(
-			[${CXX}]
-		   )
+AC_PROG_CXX([${CXX}])
 
 AX_TEST_MACRO()
 
-AC_OUTPUT([
-           Makefile
-])
+AC_OUTPUT([Makefile])
 ```
 > Example configure.ac file
 
