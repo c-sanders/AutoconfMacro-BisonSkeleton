@@ -45,11 +45,39 @@ Since this macro is non configurable, it doesn't provide any command line inform
 Consider the following simple ```configure.ac``` file. Note that it invokes the ```AX_TEST_MACRO``` macro. 
 
 ```
+# Process this file with GNU Autoconf to produce a
+# configure script.
+
+
+AC_INIT(
+        [SimpleAutotoolsProject],
+		 [0.0.1])
+
+AC_CONFIG_SRCDIR([src/main.cpp])
+
+m4_include([m4/ax_test_macro.m4])
+
+AC_CONFIG_AUX_DIR(config)
+
+AM_INIT_AUTOMAKE([subdir-objects])
+
+AC_CONFIG_MACRO_DIR([m4])
+
+AC_PROG_CC
+
+AC_PROG_CXX(
+			[${CXX}]
+		   )
+
 AX_TEST_MACRO()
+
+AC_OUTPUT([
+           Makefile
+])
 ```
 > Example configure.ac file
 
-If this ```configure.ac``` file were to be used to generate a configure script, and then this resulting configure script were to be invoked with the ```--help``` command line option, then the output should look somewhat like the following.
+If this ```configure.ac``` file were to be used to generate a configure script, and then this resulting configure script were to be invoked with the ```--help``` command line option, then the output should look something like the following.
 
 ```
 001 `configure' configures SimpleAutotoolsProject 0.0.1 to adapt to many kinds of systems.
