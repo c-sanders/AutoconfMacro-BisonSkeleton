@@ -28,15 +28,15 @@ Consider the definition of the following non configurable GNU Autoconf macro.
 09     # If the variable isn't registered, then it won't be able to be seen or be
 10     # used by other code outside of this macro.
 11
-12     TEST_MACRO_VARIABLE="Hello, World!"
+12     PLUGIN_LANGUAGE="python"
 13
-14     AC_SUBST([TEST_MACRO_VARIABLE])
+14     AC_SUBST([PLUGIN_LANGUAGE])
 15   ]
 16 )
 ```
 > Code listing no. 1
 
-This GNU Autoconf macro - which from now onwards will simply be referred to as a macro, is very basic in its nature. It doesn't do anything more than what its comments state; and that is to set the value of the variable named ```TEST_MACRO_VARIABLE``` and then register it, so that the variable can be seen and used by other code outside of the macro.
+This GNU Autoconf macro - which from now onwards will simply be referred to as a macro, is very basic in its nature. It implements a hypothetical macro which could be used by a configuration/build system, to ascertain which language any hypothetical plugins would be implemented in. It doesn't do anything more than what its comments state; and that is to set the value of the variable named ```PLUGIN_LANGUAGE``` and then register it. This second step is important, because if the variable isn't registered, then it won't be able to be seen and thus be used by other code outside of the macro.
 
 As was stated above, the macro which is defined in Code listing no. 1 implements a non configurable macro. This shouldn't come as a massive surprise, as there isn't anything in the body of the macro code for a potential user of the macro to configure! The macro itself sets the value of the variable, and then registers that same variable with GNU Autoconf. There is no way for a user of this macro to set the value of the variable ```TEST_MACRO_VARIABLE```, whether it be a Package maintainer or a Package user. Not only that, there is no way to pass configuration information into this macro in the first place, because the macro doesn't contain any functionality which allows it to do so. So this is what is meant, when the macro is referred to as being non configurable.
 
@@ -202,6 +202,12 @@ If the macro which was listed above in Code listing no. 1, might require configu
 > Code listing no. 2
 
 A point needs to be made about the the code which is listed above, and that is with regard to the alignment of the ```AS_HELP_STRING``` macro. Notice how the call to this macro does not lineup with the surrounding code in respect to indentation; that is, it is not preceded by any whitespace. If it were, then the configure script help string which is associated with the ```AX_TEST_MACRO``` would appear out of alignment when a user invokes ```configure --help``` on any package which uses this macro.
+
+```
+AX_TEST_MACRO(["Goodbye, World!"])
+```
+
+> Example configure.ac file
 
 ```
 001 `configure' configures SimpleAutotoolsProject 0.0.1 to adapt to many kinds of systems.
