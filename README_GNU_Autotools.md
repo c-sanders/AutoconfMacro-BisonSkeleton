@@ -49,7 +49,7 @@ AX_TEST_MACRO()
 ```
 > Example configure.ac file
 
-If this ```configure.ac``` file is used to generate a configure script, and then a Package user were to invoke the resulting configure script with the ```--help``` command line option, then they should see an output which looks something like the following.
+If this ```configure.ac``` file were to be used to generate a configure script, and then this resulting configure script were to be invoked with the ```--help``` command line option, then the output should look somewhat like the following.
 
 ```
 001 `configure' configures SimpleAutotoolsProject 0.0.1 to adapt to many kinds of systems.
