@@ -14,7 +14,7 @@ our attention to configurable macros.
 
 ### 2.1) Non configurable macros.
 
-Consider the definition of the following non configurable GNU Autoconf macro.
+Consider the definition of the following non configurable GNU Autoconf macro. It implements a hypothetical macro which can be used to inform a configuration/build system, of the programming language which any plugins will be implemented in.
 
 ```
 01 AC_DEFUN(
@@ -22,23 +22,24 @@ Consider the definition of the following non configurable GNU Autoconf macro.
 03  [AX_TEST_MACRO],
 04
 05   [
-06     # Set the variable and then instruct GNU Autoconf to register it with the
-07     # configure script which GNU Autoconf will generate.
-08     #
-09     # If the variable isn't registered, then it won't be able to be seen or be
-10     # used by other code outside of this macro.
-11
-12     PLUGIN_LANGUAGE="python"
-13
-14     AC_SUBST([PLUGIN_LANGUAGE])
-15   ]
-16 )
+06     # Set the value of the variable PLUGIN_LANGUAGE and then instruct GNU
+07     # Autoconf to register it with the configure script which GNU Autoconf
+08     #  will generate.
+09     #
+10     # If the variable isn't registered, then it won't be able to be seen and
+11     # thus be used by other code outside of this macro.
+12
+13     PLUGIN_LANGUAGE="python"
+14
+15     AC_SUBST([PLUGIN_LANGUAGE])
+16   ]
+17 )
 ```
 > Code listing no. 1
 
-This GNU Autoconf macro - which from now onwards will simply be referred to as a macro, is very basic in its nature. It implements a hypothetical macro which could be used by a configuration/build system, to ascertain which language any hypothetical plugins would be implemented in. It doesn't do anything more than what its comments state; and that is to set the value of the variable named ```PLUGIN_LANGUAGE``` and then register it. This second task is important, because if the variable isn't registered, then it won't be able to be seen and thus be used by other code outside of the macro.
+This GNU Autoconf macro - which from now onwards will simply be referred to as a macro, is very uld basic in its nature.  It doesn't do anything more than what its comments state; and that is to set the value of the variable named ```PLUGIN_LANGUAGE``` and then register it. This second task is important, because if the variable isn't registered, then it won't be able to be seen and thus be used by other code outside of the macro.
 
-As was stated above, the macro which is defined in Code listing no. 1 implements a non configurable macro. This shouldn't come as a massive surprise, as there isn't anything in the body of the macro code for a potential user of the macro to configure! The macro itself sets the value of the variable, and then registers that same variable with GNU Autoconf. There is no way for a user of this macro to set the value of the variable ```PLUGIN_LANGUAGE```, whether it be a Package maintainer or a Package user. Not only that, there is no way to pass configuration information into this macro in the first place, because the macro doesn't contain any functionality which allows it to do so. So this is what is meant, when the macro is referred to as being non configurable.
+As was stated above, the macro which is defined in Code listing no. 1 implements a non configurable macro. This shouldn't come as a massive surprise, as there isn't really anything in the body of the macro code for a potential user of the macro to configure! The macro itself sets the value of the variable, and then registers that same variable with GNU Autoconf. It could be argued that a user of the macro could portentially  set the value of the variable ```PLUGIN_LANGUAGE```; however as this macro exists currently, there is no way for a user to set the value of the variable; whether the user be a Package maintainer or a Package user. Not only that, there is no way to pass configuration information into this macro in the first place, because the macro doesn't contain any functionality which allows it to do so. So this is what is meant, when the macro is referred to as being non configurable.
 
 Since this macro is non configurable, it doesn't provide any command line information on how to use it; afterall, it doesn't need to. That is, if a package uses this macro, and a user of this same package invokes its configure script with the ```--help``` command line option, then the user won't receive any information on how to use this macro. 
 
