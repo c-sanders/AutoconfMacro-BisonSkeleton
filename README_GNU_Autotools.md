@@ -46,32 +46,31 @@ Since this macro is non configurable, it doesn't provide any command line inform
 Consider the following simple ```configure.ac``` file. Note that it invokes the ```AX_TEST_MACRO``` macro. 
 
 ```
-01 # Process this file with GNU Autoconf to produce a
-02 # configure script.
+01 # Process this file with GNU Autoconf to produce a configure script.
+02
 03
-04
-05 AC_INIT(
-06         [SimpleAutotoolsProject],
-07         [0.0.1]
-08 )
-09
-10 AC_CONFIG_SRCDIR([src/main.cpp])
-11
-12 m4_include([m4/ax_test_macro.m4])
-13
-14 AC_CONFIG_AUX_DIR(config)
-15
-16 AM_INIT_AUTOMAKE([subdir-objects])
-17
-18 AC_CONFIG_MACRO_DIR([m4])
-19
-20 AC_PROG_CC
-21
-22 AC_PROG_CXX([${CXX}])
-23
-24 AX_TEST_MACRO()
-25
-26 AC_OUTPUT([Makefile])
+04 AC_INIT(
+05         [SimpleAutotoolsProject],
+06         [0.0.1]
+07 )
+08
+09 AC_CONFIG_SRCDIR([src/main.cpp])
+10
+11 m4_include([m4/ax_test_macro.m4])
+12
+13 AC_CONFIG_AUX_DIR(config)
+14
+15 AM_INIT_AUTOMAKE([subdir-objects])
+16
+17 AC_CONFIG_MACRO_DIR([m4])
+18
+19 AC_PROG_CC
+20
+21 AC_PROG_CXX([${CXX}])
+22
+23 AX_TEST_MACRO()
+24
+25 AC_OUTPUT([Makefile])
 ```
 > Example configure.ac file
 
