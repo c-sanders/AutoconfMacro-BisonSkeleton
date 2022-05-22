@@ -208,7 +208,7 @@ Configuration information can be passed into a macro in one of two different way
 
 #### 2.2.1) Package maintainer.
 
-Recall in Code listing no. 1 that the language for the plugins was set to python. If a Package maintainer wanted to change it to another language, then they would need to change the macro. What if the Package maintainer could pass the desired plugin language as an argument, when they invoked the macro from the ```configure.ac``` file? That is, something like the following;
+Recall in Code listing no. 1 that the language for the plugins was set to python. If a Package maintainer wanted to change it to another language, then they would need to change the macro. But what if the Package maintainer could pass the desired plugin language as an argument, when they invoked the macro from the ```configure.ac``` file? That is, something like the following;
 
 ```
 AX_TEST_MACRO(["java"])
