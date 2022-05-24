@@ -14,7 +14,7 @@ our attention to configurable macros.
 
 ### 2.1) Non configurable macros.
 
-Consider the definition of the following non configurable GNU Autoconf macro.
+Consider the definition of the following non configurable GNU Autoconf macro. It implements a hypothetical macro which can be used to inform a configuration/build system, of the programming language which any plugins will be implemented in.
 
 ```
 01 AC_DEFUN(
@@ -22,34 +22,59 @@ Consider the definition of the following non configurable GNU Autoconf macro.
 03  [AX_TEST_MACRO],
 04
 05   [
-06     # Set the variable and then instruct GNU Autoconf to register it with the
-07     # configure script which GNU Autoconf will generate.
-08     #
-09     # If the variable isn't registered, then it won't be able to be seen or be
-10     # used by other code outside of this macro.
-11
-12     PLUGIN_LANGUAGE="python"
-13
-14     AC_SUBST([PLUGIN_LANGUAGE])
-15   ]
-16 )
+06     # Set the value of the variable PLUGIN_LANGUAGE and then instruct GNU
+07     # Autoconf to register it with the configure script which GNU Autoconf
+08     # will generate.
+09     #
+10     # If the variable isn't registered, then it won't be able to be seen and
+11     # thus be used by any other code outside of this macro.
+12
+13     PLUGIN_LANGUAGE="python"
+14
+15     AC_SUBST([PLUGIN_LANGUAGE])
+16   ]
+17 )
 ```
 > Code listing no. 1
 
-This GNU Autoconf macro - which from now onwards will simply be referred to as a macro, is very basic in its nature. It implements a hypothetical macro which could be used by a configuration/build system, to ascertain which language any hypothetical plugins would be implemented in. It doesn't do anything more than what its comments state; and that is to set the value of the variable named ```PLUGIN_LANGUAGE``` and then register it. This second step is important, because if the variable isn't registered, then it won't be able to be seen and thus be used by other code outside of the macro.
+This GNU Autoconf macro - which from now onwards will simply be referred to as a macro, is very basic in its nature.  It doesn't do anything more than what its comments state; and that is to set the value of the variable named ```PLUGIN_LANGUAGE``` and then register it. This second task is important, because if the variable isn't registered, then it won't be able to be seen and thus be used by any other code outside of the macro.
 
-As was stated above, the macro which is defined in Code listing no. 1 implements a non configurable macro. This shouldn't come as a massive surprise, as there isn't anything in the body of the macro code for a potential user of the macro to configure! The macro itself sets the value of the variable, and then registers that same variable with GNU Autoconf. There is no way for a user of this macro to set the value of the variable ```TEST_MACRO_VARIABLE```, whether it be a Package maintainer or a Package user. Not only that, there is no way to pass configuration information into this macro in the first place, because the macro doesn't contain any functionality which allows it to do so. So this is what is meant, when the macro is referred to as being non configurable.
+As was stated above, the macro which is defined in Code listing no. 1 implements a non configurable macro. This shouldn't come as a massive surprise, as there isn't really anything in the body of the macro code for any potential user of the macro to configure! The macro itself sets the value of the variable, and then registers that same variable with GNU Autoconf. It could be argued that a user of the macro could portentially  set the value of the variable ```PLUGIN_LANGUAGE```. However, as this macro exists currently, there is no way for a user to set the value of the variable; be the user a Package maintainer or a Package user. Not only that, there is no way to pass configuration information into this macro in the first place, because the macro doesn't contain any functionality which allows it to do so. So this is what is meant, when the macro is referred to as being non configurable.
 
 Since this macro is non configurable, it doesn't provide any command line information on how to use it; afterall, it doesn't need to. That is, if a package uses this macro, and a user of this same package invokes its configure script with the ```--help``` command line option, then the user won't receive any information on how to use this macro. 
 
 Consider the following simple ```configure.ac``` file. Note that it invokes the ```AX_TEST_MACRO``` macro. 
 
 ```
-AX_TEST_MACRO()
+01 # Process this file with GNU Autoconf to produce a configure script.
+02
+03
+04 AC_INIT(
+05         [SimpleAutotoolsProject],
+06         [0.0.1]
+07 )
+08
+09 AC_CONFIG_SRCDIR([src/main.cpp])
+10
+11 m4_include([m4/ax_test_macro.m4])
+12
+13 AC_CONFIG_AUX_DIR(config)
+14
+15 AM_INIT_AUTOMAKE([subdir-objects])
+16
+17 AC_CONFIG_MACRO_DIR([m4])
+18
+19 AC_PROG_CC
+20
+21 AC_PROG_CXX([${CXX}])
+22
+23 AX_TEST_MACRO()
+24
+25 AC_OUTPUT([Makefile])
 ```
 > Example configure.ac file
 
-If this ```configure.ac``` file were to be used to generate a configure script, and then this resulting configure script were to be invoked with the ```--help``` command line option, then the output should look somewhat like the following.
+If this ```configure.ac``` file were to be used to generate a configure script, and this resulting configure script were to be invoked with the ```--help``` command line option, then the output would look something like the following.
 
 ```
 001 `configure' configures SimpleAutotoolsProject 0.0.1 to adapt to many kinds of systems.
@@ -175,6 +200,24 @@ If this ```configure.ac``` file were to be used to generate a configure script, 
 Note in the ```Optional Features:``` section of the output on lines 66 -> 79, and also the ```Optional Packages:``` section of the output on lines 82 -> 91, that there is no mention of how to use the ```AX_TEST_MACRO``` macro. 
 
 ### 2.2) Configurable macros.
+
+Configuration information can be passed into a macro in one of two different ways;
+
+  - by the Package maintainer
+  - by the Package user
+
+#### 2.2.1) Package maintainer.
+
+Recall in Code listing no. 1 that the language for the plugins was set to python. If a Package maintainer wanted to change it to another language, then they would need to change the macro. But what if the Package maintainer could pass the desired plugin language as an argument, when they invoked the macro from the ```configure.ac``` file? That is, something like the following;
+
+```
+AX_TEST_MACRO(["java"])
+```
+
+As it happens, this can indeed be done.
+
+
+#### 2.2.2) Package user.
 
 If the macro which was listed above in Code listing no. 1, might require configuration information to be passed to it, then it should have additional code added to it which will allow it to facilitate this functionality. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to that shown in lines 6 -> 16 below. 
 
@@ -338,7 +381,7 @@ A point needs to be made about the the code which is listed above, and that is w
 
 Note in the ```Optional Packages:``` section of the output on line 93, that there is now a mention of how to use the AX_TEST_MACRO macro.
 
-## 2) Using the macro.
+## 3) Using the macro.
 
 Broadly speaking, people who will use this macro - or any GNU Autoconf macro for that matter, can be divided up into two categories, depending upon how they use the macros. They can be categorised as using macros either indirectly or directly.
 
@@ -354,7 +397,7 @@ Package maintainers can be thought of as using macros in an indirect sense. What
 Package users on the other hand, can be thought of as using macros in a direct sense. What this means is that they do actually execute or run the macos. When a Package user runs a package's configure script, they will be directly executing any macros that have been referenced by that package's ```configure.ac``` file.
 
 
-### 2.1) Package maintainers : The people who reference this macro.
+### 3.1) Package maintainers : The people who reference this macro.
 
 If a Package maintainer wanted to use the ```AX_TEST_MACRO``` macro in their particular package, then the macro will need to be referenced from within their package's ```configure.ac``` file. This can be done in a manner which is similar to the following;
 
@@ -367,11 +410,11 @@ Once a package's ```configure.ac``` file has been finalised, the Package maintai
 When a Package maintainer is ready to distribute their package to users, all of the files which are to form the package should be "rolled up" into an archive file for ease of distribution. It is these archive files which form the actual package for the project, and a key file in any package should be its configure script.
 
 
-### 2.2) Package users : The people who execute this macro.
+### 3.2) Package users : The people who execute this macro.
 
-#### 2.2.1) Macros that can't be configured.
+#### 3.2.1) Macros that can't be configured.
 
 When the user of this package executes its configure script with the ```--help``` command line option, the user won't see any information on how to use this macro.
 
 
-#### 2.2.2) Macros that can be configured.
+#### 3.2.2) Macros that can be configured.
