@@ -240,6 +240,12 @@ As it happens, this can indeed be done! If we take the code from Code listing no
 
 #### 2.2.2) Package user.
 
+Now imagine a different scenario; where the Package user wants to select a different plugin language than that the one which has been set by the Package maintainer. They would need to inform the configuration system about this, and this means passing information to the configure script. The configure script would therefore need to be altered so that it can support
+
+```
+--with-bison-skeleton=<yes|no|name_skeleton_file>
+```
+
 If the macro which was listed above in Code listing no. 1, might require configuration information to be passed to it, then it should have additional code added to it which will allow it to facilitate this functionality. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to that shown in lines 6 -> 16 below. 
 
 ```
