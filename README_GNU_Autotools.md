@@ -208,13 +208,13 @@ Configuration information can be passed into a macro in one of two different way
 
 #### 2.2.1) Package maintainer.
 
-Recall from Code listing no. 1 that the plugin language was set to python. Now consider what would happen if a Package maintainer wanted to change it to another language; say ```java```. They would need to edit the body of the macro and replace ```python``` with ```java```. But what if the Package maintainer could pass the desired plugin language as an argument, when they invoked the macro from the ```configure.ac``` file? That is, something like the following;
+Recall from Code listing no. 1 that the plugin language was set to python. Now consider what would happen if a Package maintainer wanted to change it to another language; say ```java``` for example. They would need to edit the body of the macro and replace ```python``` with ```java```. But what if the Package maintainer could pass the desired plugin language as an argument to the macro, when they invoked it from the ```configure.ac``` file? That is, something like the following;
 
 ```
 AX_TEST_MACRO(["java"])
 ```
 
-As it happens, this can indeed be done! Consider the definition of the following GNU Autoconf macro. Unlike the macro which was defined in Code listing no. 1, this macro is configurable. The desired plugin language should be passed to this macro as an argument - as was demonstrated just above. This argument is then referred to within the body of the macro as ```$1```, as can be seen below.
+As it happens, this can indeed be done! If we take the code from Code listing no. 1 and make the slightest of changes to it, then we will get the code which is shown below in Code listing no. 2. Unlike the macro which was defined in Code listing no. 1, this macro is now configurable. But just how does it achieve its configurability? The desired plugin language should be passed to this macro as an argument - as was demonstrated just above. This argument is then referred to within the body of the macro as ```$1```, as can be seen below; and this is how the macro achieves its configurability. It means that the macro can be configured with a different language every time it is invoked.
 
 ```
 01 AC_DEFUN(
