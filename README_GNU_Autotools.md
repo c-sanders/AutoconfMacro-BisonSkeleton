@@ -294,10 +294,10 @@ The first one is with regard to the alignment of the ```AS_HELP_STRING``` macro.
 
 The second one pertains to the ```AC_ARG_WITH``` macro which is used by ```AX_TEST_MACRO```. ```AC_ARG_WITH``` is comprised of four parameters.
 
-  - 1) : A name to associate with this macro's --with option.
-  - 2) : A help string to associate with this macro's --with option.
-  - 3) : What action to take if the Package configurer passes a value to this macro's --with option.
-  - 4) : What action to take if the Package configurer doesn't pass a value to this macro's --with option.
+1. : A name to associate with this macro's --with option.
+2. : A help string to associate with this macro's --with option.
+3. : What action to take if the Package configurer passes a value to this macro's --with option.
+4. : What action to take if the Package configurer doesn't pass a value to this macro's --with option.
 
 ```
 001 `configure' configures SimpleAutotoolsProject 0.0.1 to adapt to many kinds of systems.
