@@ -290,14 +290,20 @@ To get the configure script to support such an option, we need to go about it in
 
 A few points need to be made about the the code which is listed above.
 
-The first one is with regard to the alignment of the ```AS_HELP_STRING``` macro. Notice how the call to this macro does not lineup with the surrounding code in respect to indentation; that is, it is not preceded by any whitespace. If it were, then the configure script help string which is associated with the ```AX_TEST_MACRO``` would appear out of alignment when a user invokes ```configure --help``` on any package which uses this macro.
+The first is with regard to the alignment of the ```AS_HELP_STRING``` macro. Notice how the call to this macro does not lineup with the surrounding code in respect to indentation; that is, it is not preceded by any whitespace. If it were, then the configure script help string which is associated with the ```AX_TEST_MACRO``` would appear out of alignment when a user invokes ```configure --help``` on any package which uses this macro.
 
-The second one pertains to the ```AC_ARG_WITH``` macro which is used by ```AX_TEST_MACRO```. ```AC_ARG_WITH``` is comprised of four parameters.
+The second point pertains to the ```AC_ARG_WITH``` macro which is used by ```AX_TEST_MACRO```. ```AC_ARG_WITH``` is comprised of four parameters.
 
-1) : A name to associate with this macro's --with option.
-2) : A help string to associate with this macro's --with option.
-3) : What action to take if the Package configurer passes a value to this macro's --with option.
-4) : What action to take if the Package configurer doesn't pass a value to this macro's --with option.
+1. : A name to associate with this macro's --with option.
+2. : A help string to associate with this macro's --with option.
+3. : What action to take if the Package configurer passes a value to this macro's --with option.
+4. : What action to take if the Package configurer doesn't pass a value to this macro's --with option.
+
+From line 15 of Code listing no. 3, you can see that if the Package configurer doesn't supply a value to the --with option of the ```AX_TEST_MACRO``` option, then the plugin language will be configured by default to be python. That is, if the Package configurer invokes the package's configure script 
+
+```
+configure ... --with-plugin-language
+```
 
 ```
 001 `configure' configures SimpleAutotoolsProject 0.0.1 to adapt to many kinds of systems.
