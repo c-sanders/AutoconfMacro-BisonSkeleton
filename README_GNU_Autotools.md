@@ -240,7 +240,7 @@ As it happens, this can indeed be done! If we take the code from Code listing no
 
 #### 2.2.2) Package user.
 
-Now imagine a different scenario; where the Package user wants to select plugin language which is different to the one which has been set by the Package maintainer. In order to accomplish this, the Package user would somehow need to inform the configuration system about this fact. In the context of the GNU Autotools system, this means passing information - in the form of command line options, to the package's configure script. However, in order to be able to do this, the configure script would first need to be altered, so that it could support having such information passed to it.
+Now imagine a different scenario, where the Package user wants to select a plugin language which is different to the one which has been set by the Package maintainer. In order to accomplish this, the Package user would somehow need to inform the configuration system of this fact. In the context of the GNU Autotools system, this means passing information - in the form of a command line option, to the package's configure script. However, in order to be able to do this, the configure script would first need to be altered, so that it could support having such information passed to it in the first place.
 
 Looking through the output from ```--configure --help``` which was displayed earlier, we can see that there are a number of options which are listed under the ```Optional Packages:``` section. It would be immensely helpful if the configure script supplied an option which would allow it to support the specification of a Bison Skeleton file. That is, it provided an option akin to the following;
 
