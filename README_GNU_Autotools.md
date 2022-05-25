@@ -254,7 +254,7 @@ Looking through the output from the --configure --help command which was display
 --with-plugin-language=PLUGIN_LANG
 ```
 
-To get the configure script to support such an option, we need to go about it in a roundabout kind of way. First, we need to add additional functionality to the ```AX_TEST_MACRO```, which will support this desired behaviour. Recall that GNU Autoconf creates a configure script for a given package, by copying and expanding the contents of a series of macros - which are initially defined in the package's configure.ac file, into a configure script. Since a package's configure script is created in this fashion, it means that this additional functionality which will be implemented in the ```AX_TEST_MACRO```, will ultimately end up in the package's configure script. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to that shown in lines 6 -> 16 below. You can probably guess from the name of the ```AC_ARG_WITH``` macro, that it is used to provide a ```--with``` option to other GNU Autoconf macros. The fact that the macro name starts with ```AC_```, is used to inform users of this macro, that it is a GNU Autoconf macro - hence the AC in the prefix of the macro name.
+To get the configure script to support such an option, we need to go about it in a roundabout kind of way. First, we need to add additional functionality to the ```AX_TEST_MACRO```, which will support this desired behaviour. Recall that GNU Autoconf creates a configure script for a given package, by copying and expanding the contents of a series of macros - which are initially defined in the package's configure.ac file, into a configure script. Since a package's configure script is created in this fashion, it means that this additional functionality which will be implemented in the ```AX_TEST_MACRO```, will ultimately end up in the package's configure script. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to that shown in lines 6 -> 16 below. You can probably guess from the name of the ```AC_ARG_WITH``` macro, that it is used to provide a ```--with``` option to other GNU Autoconf macros. The reason that the name of this macro starts with ```AC_```, is to inform users of this macro, that it is a GNU Autoconf macro - hence the AC in the prefix of the macro name.
 
 ```
 01 AC_DEFUN(
@@ -288,7 +288,16 @@ To get the configure script to support such an option, we need to go about it in
 ```
 > Code listing no. 3
 
-A point needs to be made about the the code which is listed above, and that is with regard to the alignment of the ```AS_HELP_STRING``` macro. Notice how the call to this macro does not lineup with the surrounding code in respect to indentation; that is, it is not preceded by any whitespace. If it were, then the configure script help string which is associated with the ```AX_TEST_MACRO``` would appear out of alignment when a user invokes ```configure --help``` on any package which uses this macro.
+A few points need to be made about the the code which is listed above.
+
+The first one is with regard to the alignment of the ```AS_HELP_STRING``` macro. Notice how the call to this macro does not lineup with the surrounding code in respect to indentation; that is, it is not preceded by any whitespace. If it were, then the configure script help string which is associated with the ```AX_TEST_MACRO``` would appear out of alignment when a user invokes ```configure --help``` on any package which uses this macro.
+
+The second one pertains to the ```AC_ARG_WITH``` macro which is used by ```AX_TEST_MACRO```. ```AC_ARG_WITH``` is comprised of four parameters.
+
+  - 1) : A name to associate with this macro's --with option.
+  - 2) : A help string to associate with this macro's --with option.
+  - 3) : What action to take if the Package configurer passes a value to this macro's --with option.
+  - 4) : What action to take if the Package configurer doesn't pass a value to this macro's --with option.
 
 ```
 001 `configure' configures SimpleAutotoolsProject 0.0.1 to adapt to many kinds of systems.
