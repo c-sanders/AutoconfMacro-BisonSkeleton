@@ -240,17 +240,15 @@ As it happens, this can indeed be done! If we take the code from Code listing no
 
 #### 2.2.2) Package user.
 
-Now imagine a different scenario, where the Package user wants to select a plugin language which is different to the one which has been set by the Package maintainer. In order to accomplish this, the Package user would somehow need to inform the configuration system of this fact. In the context of the GNU Autotools system, this means passing information - in the form of a command line option, to the package's configure script. To be able to do this however, the configure script would first need to be altered, so that it could support having such information passed to it in the first place.
+Now imagine a scenario, where the Package user wants to select a plugin language which is different to the one which has been set by the Package maintainer. In order to accomplish this, the Package user would somehow need to inform the configuration system of this fact. In the context of the GNU Autotools system, this means passing information - in the form of a command line option and associated value, to the package's configure script. To be able to do this however, the configure script would first need to be altered, so that it could support having such information passed to it in the first place.
 
-Looking through the output from ```--configure --help``` which was displayed earlier, we can see that there are a number of options which are listed under the ```Optional Packages:``` section. It would be immensely helpful if the configure script supplied an option which would allow it to support the specification of a Bison Skeleton file. That is, it provided an option which was akin to the following;
+Looking through the output from the --configure --help command which was displayed earlier, we can see that there are a number of options which are listed under the ```Optional Packages:``` section. It would be nice if the configure script supplied an option which would allow it to support the specification of a plugin language. That is, it would be nice if the configuration script provided an option which was akin to the following;
 
 ```
---with-bison-skeleton=<yes|no|name_skeleton_file>
+--with-plugin-language=PLUGIN_LANG
 ```
 
-In order to get the configure script to support such an option, we will need to add additional functionality to the ```AX_TEST_MACRO```.
-
-It almost goes without saying, that in order to get the ```AX_TEST_MACRO``` to support such functionality, additional code will need to be added to it. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to that shown in lines 6 -> 16 below. 
+To get the configure script to support such an option, we need to go about it in a roundabout kind of way. First, we need to add additional functionality to the ```AX_TEST_MACRO```, which will support this desired behaviour. Recall that GNU Autoconf creates a configure script for a given package, by copying and expanding the contents of a series of macros into a configure script. Since a package's configure script is created in this fashion, it means that this additional functionality which will be implemented in the ```AX_TEST_MACRO```, will ultimately end up in a configure script. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to that shown in lines 6 -> 16 below. 
 
 ```
 01 AC_DEFUN(
