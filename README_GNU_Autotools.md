@@ -3,7 +3,13 @@ Filename : README_GNU_Autotools.md
 
 ## 1) Introduction.
 
+  - Non configurable and configurable macros.
+
 GNU Autoconf macros can be classified as being either non configurable or configurable. But what does this mean exactly? To help try and explain the difference between the two categories, the next section will discuss each of them in turn.
+
+  - Package maintainers, Package installers, and Package users.
+
+The definition of a Package maintainer is somewhat obvious, while the definition of a Package user is a bit more complex. The trouble is that Package users can derive from anyone of a number of different subclasses, e.g. Package configurers, Package builders, Package installers, etc.
 
 
 ## 2) Non configurable and configurable macros.
@@ -238,9 +244,9 @@ As it happens, this can indeed be done! If we take the code from Code listing no
 > Code listing no. 2
 
 
-#### 2.2.2) Package user.
+#### 2.2.2) Package configurer.
 
-Now imagine a scenario, where the Package user wants to select a plugin language which is different to the one which has been set by the Package maintainer. In order to accomplish this, the Package user would somehow need to inform the configuration system of this fact. In the context of the GNU Autotools system, this means passing information - in the form of a command line option and associated value, to the package's configure script. To be able to do this however, the configure script would first need to be altered, so that it could support having such information passed to it in the first place.
+Now imagine a scenario, where the Package configurer wants to select a plugin language which is different to the one which has been set by the Package maintainer. In order to accomplish this, the Package user would somehow need to inform the configuration system of this fact. In the context of the GNU Autotools system, this means passing information - in the form of a command line option and associated value, to the package's configure script. To be able to do this however, the configure script would first need to be altered, so that it could support having such information passed to it in the first place.
 
 Looking through the output from the --configure --help command which was displayed earlier, we can see that there are a number of options which are listed under the ```Optional Packages:``` section. It would be nice if the configure script supplied an option which would allow it to support the specification of a plugin language. That is, it would be nice if the configuration script provided an option which was akin to the following;
 
@@ -248,7 +254,7 @@ Looking through the output from the --configure --help command which was display
 --with-plugin-language=PLUGIN_LANG
 ```
 
-To get the configure script to support such an option, we need to go about it in a roundabout kind of way. First, we need to add additional functionality to the ```AX_TEST_MACRO```, which will support this desired behaviour. Recall that GNU Autoconf creates a configure script for a given package, by copying and expanding the contents of a series of macros into a configure script. Since a package's configure script is created in this fashion, it means that this additional functionality which will be implemented in the ```AX_TEST_MACRO```, will ultimately end up in a configure script. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to that shown in lines 6 -> 16 below. 
+To get the configure script to support such an option, we need to go about it in a roundabout kind of way. First, we need to add additional functionality to the ```AX_TEST_MACRO```, which will support this desired behaviour. Recall that GNU Autoconf creates a configure script for a given package, by copying and expanding the contents of a series of macros - which are initially defined in the package's configure.ac file, into a configure script. Since a package's configure script is created in this fashion, it means that this additional functionality which will be implemented in the ```AX_TEST_MACRO```, will ultimately end up in the package's configure script. At a bare minimum, this additional code should invoke the GNU Autoconf ```AC_ARG_WITH``` macro, in a manner which is similar to that shown in lines 6 -> 16 below. You can probably guess from the name of the ```AC_ARG_WITH``` macro, that it is used to provide a ```--with``` option to other GNU Autoconf macros. The fact that the macro name starts with ```AC_```, is used to inform users of this macro, that it is a GNU Autoconf macro - hence the AC in the prefix of the macro name.
 
 ```
 01 AC_DEFUN(
@@ -260,12 +266,12 @@ To get the configure script to support such an option, we need to go about it in
 07       [test-macro],
 08       [
 09 AS_HELP_STRING(
-10 [--with-value=@<:@variable_value@:>@],
-11 [instruct the macro to set the variable to the specified value]
+10 [--with-plugin-language=PLUGIN_LANG],
+11 [inform the system of the plugin language]
 12 )
 13       ],
-14       [TEST_MACRO_VARIABLE=${withval}],
-15       [TEST_MACRO_VARIABLE="Hello, World!"]
+14       [PLUGIN_LANGUAGE=${withval}],
+15       [PLUGIN_LANGUAGE="python"]
 16     )
 17
 18     # The call to AC_ARG_WITH will have set the value of the variable
@@ -276,7 +282,7 @@ To get the configure script to support such an option, we need to go about it in
 23     # If the variable isn't registered, then it won't be able to be seen or be
 24     # used by other code outside of this macro.
 25
-26     AC_SUBST([TEST_MACRO_VARIABLE])
+26     AC_SUBST([PLUGIN_LANGUAGE])
 27   ]
 28 )
 ```
