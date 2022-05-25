@@ -208,13 +208,34 @@ Configuration information can be passed into a macro in one of two different way
 
 #### 2.2.1) Package maintainer.
 
-Recall in Code listing no. 1 that the language for the plugins was set to python. If a Package maintainer wanted to change it to another language, then they would need to change the macro. But what if the Package maintainer could pass the desired plugin language as an argument, when they invoked the macro from the ```configure.ac``` file? That is, something like the following;
+Recall from Code listing no. 1 that the plugin language was set to python. Now consider what would happen if a Package maintainer wanted to change it to another language; say ```java```. They would need to edit the body of the macro and replace ```python``` with ```java```. But what if the Package maintainer could pass the desired plugin language as an argument, when they invoked the macro from the ```configure.ac``` file? That is, something like the following;
 
 ```
 AX_TEST_MACRO(["java"])
 ```
 
-As it happens, this can indeed be done.
+As it happens, this can indeed be done! Consider the definition of the following GNU Autoconf macro. Unlike the macro which was defined in Code listing no. 1, this macro is configurable. The desired plugin language should be passed to this macro as an argument - as was demonstrated just above. This argument is then referred to within the body of the macro as ```$1```, as can be seen below.
+
+```
+01 AC_DEFUN(
+02
+03  [AX_TEST_MACRO],
+04
+05   [
+06     # Set the value of the variable PLUGIN_LANGUAGE and then instruct GNU
+07     # Autoconf to register it with the configure script which GNU Autoconf
+08     # will generate.
+09     #
+10     # If the variable isn't registered, then it won't be able to be seen and
+11     # thus be used by any other code outside of this macro.
+12
+13     PLUGIN_LANGUAGE=$1
+14
+15     AC_SUBST([PLUGIN_LANGUAGE])
+16   ]
+17 )
+```
+> Code listing no. 2
 
 
 #### 2.2.2) Package user.
@@ -251,7 +272,7 @@ If the macro which was listed above in Code listing no. 1, might require configu
 27   ]
 28 )
 ```
-> Code listing no. 2
+> Code listing no. 3
 
 A point needs to be made about the the code which is listed above, and that is with regard to the alignment of the ```AS_HELP_STRING``` macro. Notice how the call to this macro does not lineup with the surrounding code in respect to indentation; that is, it is not preceded by any whitespace. If it were, then the configure script help string which is associated with the ```AX_TEST_MACRO``` would appear out of alignment when a user invokes ```configure --help``` on any package which uses this macro.
 
