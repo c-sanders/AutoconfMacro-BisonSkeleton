@@ -160,6 +160,10 @@ As at 27 May 2022, the macro was implemented as follows;
 88 )
 ```
 
+- ```BISON_SKELETON_DEFAULT=$1```
+
+
+
 - ```AC_DEFUN```
 
 This is what is actually responsible for the definition of the macro.
@@ -189,7 +193,7 @@ This implements a switch statement which processes the value that was passed to 
  
 1) The first argument on line 27 instructs the macro as to what value it should make its decision on.
 
-2) The second argument on line 28 instructs the macro to set the environment variable ```BISON_SKELETON``` to the GNU Bison Skeleton file ```lalr1.cc``` if a value of ```yes"``` was passed to the ```--with-bison-skeleton``` option by the user of the configure script.
+2) The second and third arguments on lines 69 and 70, state that if a value of ```yes``` was passed as an argument to the ```--with-bison-skeleton``` option, then the value of the variable ```BISON_SKELETON``` should be set to the default value of ```BISON_SKELETON_DEFAULT```.
 
 3) The third argument on line 29 instructs the macro to set the environment variable ```BISON_SKELETON``` to the GNU Bison Skeleton file ```lalr1.cc``` if a value of ```no"``` was passed to the ```--with-bison-skeleton``` option by the user of the configure script.
 
