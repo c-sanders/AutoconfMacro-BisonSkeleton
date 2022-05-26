@@ -67,43 +67,96 @@ following configure script option should show up when this configure script is i
 The macro is implemented in a rather basic fashion. It does not do anything too complex, and most of
 the work is offloaded onto the GNU Autoconf macro ```AC_CHECK_PROG```.
 
-As at 12 April 2022, the macro was implemented as follows;
+As at 27 May 2022, the macro was implemented as follows;
 
 ```
 01 # -----------------------------------------------------------------------------
 02 # Macro : AX_BISON_SKELETON
 03 # =========================
 04 #
-05 # This macro can be used to tell the GNU Autotools which Skeleton file GNU
-06 # Bison should use.
+05 # This macro can be used to instruct the GNU Autotools as to which Skeleton file
+06 # GNU Bison should use.
 07 # -----------------------------------------------------------------------------
-08 
-09 
-10 AC_DEFUN(
-11 
-12   [AX_BISON_SKELETON],
-13 
-14   [
-15     AC_ARG_WITH(
-16       [bison-skeleton],
-17       [
-18         AS_HELP_STRING(
-19           [--with-bison-skeleton=@<:@bison-skeleton@:>@],
-20           [instruct GNU Bison as to which Skeleton file to use (ARG=bison_skeleton_file)]
-21         )
-22       ],
-23       [BISON_SKELETON=${withval}],
-24       [BISON_SKELETON=""]
-25     )
-26     AS_CASE(
-27       [${withval}],
-28       [yes], [BISON_SKELETON="lalr1.cc"],
-29       [no],  [BISON_SKELETON="lalr1.cc"],
-30       [BISON_SKELETON="${withval}"]
-31     )
-32     AC_SUBST(BISON_SKELETON)
-33   ]
-34 )
+08 # Explanation of values which can be passed to this macro's --with option.
+09 #
+10 #   yes :
+11 #
+12 #   This value indicates that the Package configurer wants to use a Bison
+13 #   Skeleton file. Since the Package configurer hasn't specified an exact Bison
+14 #   Skeleton file to use, use the default Bison Skeleton file which has been
+15 #   specified by the Package maintainer in the package's configure.ac file.
+16 #
+17 #   no :
+18 #
+19 #   This value indicates that the Package configurer does not want to use a
+20 #   Bison Skeleton file. There is a problem with this, and that is that the
+21 #   package needs to use a Bison Skeleton file. As a result, this macro will
+22 #   exit with a failure, informing the Package configurer of the problem.
+23 #
+24 #   Any other value :
+25 #
+26 #   This macro will assume that any value other than yes or no is the name of a
+27 #   Bison Skeleton file.
+28 #
+29 # Note :
+30 # This macro does not check to see if the Bison Skeleton file which is
+31 # ultimately selected by it, actually exists.
+32 # -----------------------------------------------------------------------------
+33 
+34 
+35 AC_DEFUN(
+36 
+37   [AX_BISON_SKELETON],
+38 
+39   [
+40     # Save the value which was passed to this macro's $1 variable.
+41     #
+42     # The reason for doing this is because other code within the body of this
+43     # macro uses this same variable and thus overwrites its value.
+44 
+45     BISON_SKELETON_DEFAULT=$1
+46 
+47 
+48     # Enable and setup this macro's --with option.
+49 
+50     AC_ARG_WITH(
+51       [bison-skeleton],
+52       [
+53 AS_HELP_STRING(
+54 [--with-bison-skeleton=@<:@yes|no|FILENAME@:>@],
+55 [instruct GNU Bison which Skeleton file to use (ARG=bison_skeleton)]
+56 )
+57       ],
+58       [BISON_SKELETON=${withval}]
+59     )
+60 
+61     # Set the value of the variable BISON_SKELETON.
+62     #
+63     # Exactly what it is set to, will depend upon the value which was passed to
+64     # this macro's --with option.
+65 
+66     AS_CASE(
+67       [${with_bison_skeleton}],
+68       [yes],
+69       [BISON_SKELETON=${BISON_SKELETON_DEFAULT}],
+70       [no],
+71       [
+72         AC_MSG_FAILURE(["You have to specify a Bison Skeleton file to use!"])
+73       ],
+74       [BISON_SKELETON=${with_bison_skeleton}]
+75     )
+76 
+77     # Instruct Autoconf to register the variable BISON_SKELETON.
+78     #
+79     # This registers the variable - along with its value, with the configure
+80     # script. By doing this, it allows the rest of the configure script to see
+81     # and thus use this variable.
+82 
+83     AC_SUBST(BISON_SKELETON)
+84 
+85     AC_MSG_NOTICE([BISON_SKELETON = ${BISON_SKELETON}])
+86   ]
+87 )
 ```
 
 - ```AC_DEFUN```
