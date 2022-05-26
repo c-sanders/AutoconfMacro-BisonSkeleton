@@ -162,7 +162,9 @@ As at 27 May 2022, the macro was implemented as follows;
 
 - ```BISON_SKELETON_DEFAULT=$1```
 
+```$1``` holds the value of the first command line argument which was passed to this macro. We should save this value into the variable ```BISON_SKELETON_DEFAULT```, because other code within the body of this macro also uses the ```$1``` variable, and if we don't save its value, it will be lost.
 
+When this macro is first invoked, ```$1``` will contain the value which was passed to it, when it was invoked from a package's ```configure.ac``` file. 
 
 - ```AC_DEFUN```
 
