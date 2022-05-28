@@ -15,14 +15,14 @@ is, this package wouldn't exist if it wasn't for this macro.
 
 ### 2) Purpose of the macro
 
-The purpose of this macro, is to enable the GNU Autotools to ascertain if a GNU Bison Skeleton file should be used for the configuration and building of a particular project. In the case where a Skeleton file should be used, the name of the desired Skeleton file can be passed as an argument to this macro.
+The purpose of this macro, is to ascertain if a GNU Bison Skeleton file should be used for the configuration and building of a particular project. In the case where a specific Skeleton file should be used, the name of the desired Skeleton file can be passed as an argument to this macro, using its ```--with``` configure script option.
 
 If it is ascertained that a Skeleton file should indeed be used, and the name of one has been specified, then the ```AX_BISON_SKELETON``` macro will set an environment variable called ```BISON_SKELETON``` with the name of the Skeleton file which should be used by the project.
 
 
 ### 3) GNU Bison Skeleton files
 
-When GNU Bison creates a Parser, it doesn't do it from scratch. Instead, it uses as a starting
+When GNU Bison creates a Parser, it doesn't do so from scratch. Instead, it uses as a starting
 point, one of the Skeleton files that are distributed with the GNU Bison package. Depending upon how
 GNU Bison has been installed on any particular system, one may be able to find these Skeleton files
 within the following sub-directory of the location into which GNU Bison has been installed;
@@ -83,13 +83,13 @@ As at 27 May 2022, the macro was implemented as follows;
 11 #
 12 #   This value indicates that the Package configurer wants to use a Bison
 13 #   Skeleton file. Since the Package configurer hasn't specified an exact Bison
-14 #   Skeleton file to use, use the default Bison Skeleton file which has been
+14 #   Skeleton file to use, use the default one  which has been
 15 #   specified by the Package maintainer in the package's configure.ac file.
 16 #
 17 #   no :
 18 #
 19 #   This value indicates that the Package configurer does not want to use a
-20 #   Bison Skeleton file. There is a problem with this, and that is that the
+20 #   Bison Skeleton file. There is a problem with this however, and that is that the
 21 #   package needs to use a Bison Skeleton file. As a result, this macro will
 22 #   exit with a failure, informing the Package configurer of the problem.
 23 #
@@ -162,7 +162,7 @@ As at 27 May 2022, the macro was implemented as follows;
 
 - ```BISON_SKELETON_DEFAULT=$1```
 
-```$1``` holds the value of the first command line argument which was passed to this macro. We should save this value into the variable ```BISON_SKELETON_DEFAULT```, because other code within the body of this macro also uses the ```$1``` variable, and if we don't save its value, it will be lost.
+```$1``` holds the value of the first command line argument which was passed to this macro. The macro should save this value into the variable ```BISON_SKELETON_DEFAULT```, because other code within the body of this macro also uses the ```$1``` variable, and if it doesn't save its value, then it will be lost.
 
 When this macro is first invoked, ```$1``` will contain the value which was passed to it, when it was invoked from a package's ```configure.ac``` file. 
 
@@ -178,28 +178,26 @@ This is what is actually responsible for the definition of the macro.
 
 - ```AC_ARG_WITH```
 
-This instructs GNU Autoconf to make a ```--with``` option available for this macro. This ```--with``` option will be available from any configure script that uses this macro. As will be explained in a moment, the exact name of this macro's ```--with``` option is ```--with-bison-skeleton```.
+This instructs GNU Autoconf to make a ```--with``` option available for this macro. This ```--with``` option will be available from any configure script that uses this macro. For reasons that will be explained in a moment, the exact name of this macro's ```--with``` option is ```--with-bison-skeleton```.
 
-1) The first argument on line 38 declares the specific name for the external package which this macro is dealing with. The value of this first argument is used to help form the name of the ```--with``` option which will be associated with this macro. Seeing as the value specified here is ```bison-skeleton```, the name of the resulting ```--with``` option for this macro will be ```--with-bison-skeleton```.
+1) The first argument on line 52 declares the specific name which will be associated with this macro. The value of this first argument is used to help form the name of the ```--with``` option which will be associated with this macro. Seeing as the value specified here is ```bison-skeleton```, the name of the resulting ```--with``` option for this macro will be ```--with-bison-skeleton```.
 
-2) The second argument on lines 51-60 define how the usage for the ```--with-bison-skeleton``` option will be presented to the user of the configure script.
+2) The second argument on lines 53-58 define how the usage for the ```--with-bison-skeleton``` option will be presented to the user of the configure script.
 
-3) The third argument on line 59 specifies what actions the macro should take if the user of the configure script specifies a value for the ```--with-bison-skeleton``` option.
-
-4) The fourth argument on line 24 specifies what actions the macro should take if the user of the configure script does not specify a value for the ```--with-bison-skeleton``` option.
+3) The third argument on line 59 specifies what actions the macro should take if the user of the configure script passes a value to the ```--with-bison-skeleton``` option.
 
 
 - ```AS_CASE```
 
-This implements a switch statement which processes the value that was passed to the ```--with-bison-skeleton``` by the user of the configure script.
+This implements a switch statement, which is based upon the value that was passed to the ```--with-bison-skeleton``` option by the user of the configure script. The actions that the macro performs, are also dependent upon this same value.
  
-1) The first argument on line 27 instructs the macro as to what value it should make its decision on.
+1) The first argument on line 68 instructs the macro as to what value it should make its decision on.
 
 2) The second and third arguments on lines 69 and 70, state that if a value of ```yes``` was passed as an argument to the ```--with-bison-skeleton``` option, then the value of the variable ```BISON_SKELETON``` should be set to the default value of ```BISON_SKELETON_DEFAULT```.
 
-3) The third argument on line 29 instructs the macro to set the environment variable ```BISON_SKELETON``` to the GNU Bison Skeleton file ```lalr1.cc``` if a value of ```no"``` was passed to the ```--with-bison-skeleton``` option by the user of the configure script.
+3) The fourth and fifth arguments on lines 71-74, state that if a value of ```no``` was passed as an argument to the ```--with-bison-skeleton``` option, then a failure message should be presented to the person running the configure script.
 
-4) The fourth argument on line 30 instructs the macro to set the environment variable ```BISON_SKELETON``` to the value which was passed to the ```--with-bison-skeleton``` option by the user of the configure script. This macro does not check to see if the value which was passed to this option is valid or not, so the user of the configure script needs to be careful as to what values they pass it!
+4) The sixth argument on line 75 instructs the macro to set the environment variable ```BISON_SKELETON``` to the value which was passed to the ```--with-bison-skeleton``` option by the user of the configure script. This macro does not check to see if the value which was passed to this option is valid or not, so the user of the configure script needs to be careful as to what values they pass it!
 
 
 ### 6) Behaviour of the macro
