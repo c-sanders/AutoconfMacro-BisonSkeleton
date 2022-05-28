@@ -195,7 +195,7 @@ This implements a switch statement, which is based upon the value that was passe
 
 2) The second and third arguments on lines 69 and 70, state that if a value of ```yes``` was passed as an argument to the ```--with-bison-skeleton``` option, then the value of the variable ```BISON_SKELETON``` should be set to the default value of ```BISON_SKELETON_DEFAULT```.
 
-3) The fourth and fifth arguments on lines 71-74, state that if a value of ```no``` was passed as an argument to the ```--with-bison-skeleton``` option, then a failure message should be presented to the person running the configure script.
+3) The fourth and fifth arguments on lines 71-74, state that if a value of ```no``` was passed as an argument to the ```--with-bison-skeleton``` option, then a failure message should be presented to the person running the configure script. A failure message means that the configure script will display the specified message and then terminate with a failure. The reason for this is because the user of the configure script has elected not to stipulate a Skeleton file - and this is a problem, because the project which is being configured needs to use a Skeleton file.
 
 4) The sixth argument on line 75 instructs the macro to set the environment variable ```BISON_SKELETON``` to the value which was passed to the ```--with-bison-skeleton``` option by the user of the configure script. This macro does not check to see if the value which was passed to this option is valid or not, so the user of the configure script needs to be careful as to what values they pass it!
 
