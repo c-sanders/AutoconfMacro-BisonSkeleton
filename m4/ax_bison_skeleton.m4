@@ -4,6 +4,15 @@
 #
 # This macro can be used to instruct the GNU Autotools on which Skeleton file
 # GNU Bison should use.
+#
+# ------------------------------------------------------------------------------
+#
+# Dependencies :
+#
+# This macro may require that the following macro(s) be executed first.
+#
+#   - AX_BISON_ROOTDIR
+#
 # ------------------------------------------------------------------------------
 # Explanation of values which can be passed to this macro's --with option.
 #
@@ -30,6 +39,43 @@
 #
 # This macro does not check to see if the Bison Skeleton file which is
 # ultimately selected by it, actually exists.
+# ------------------------------------------------------------------------------
+# There are 11 execution paths through this macro.
+#
+#   - 6 : Failure paths  (Path nums : 1,2,3,6,7,10)
+#   - 5 : Success paths  (Path nums : 4,5,8,9,11)
+#
+# Execution path 1 :
+#   - --with-bison-skeleton=no
+#
+# Execution path 2 :
+#   - --with-bison-skeleton=yes
+#   - Default Skeleton file NOT set.
+#
+# Execution path 3 :
+#   - --with-bison-skeleton=yes
+#   - Default Skeleton file set.
+#   - Default Skeleton file cannot be found when not using Bison root directory.
+#   - Default Skeleton file cannot be found when using Bison root directory. 
+#
+# Execution path 6 :
+#   - --with-bison-skeleton=filename
+#   - Supplied filename is NOT fully qualified.
+#   - Default Skeleton file cannot be found when not using Bison root directory.
+#   - Bison root directory is not set.
+#
+# Execution path 7 :
+#   - --with-bison-skeleton=filename
+#   - Supplied filename is NOT fully qualified.
+#   - Supplied filename cannot be found when not using Bison root directory.
+#   - Bison root directory is set.
+#   - Supplied filename cannot be found when using Bison root directory.
+#
+# Execution path 10 :
+#   - --with-bison-skeleton=filename
+#   - Supplied filename is fully qualified.
+#   - Supplied filename cannot be found.
+#
 # ------------------------------------------------------------------------------
 
 
@@ -70,10 +116,32 @@ AS_HELP_STRING(
 
     AS_CASE(
       [${with_bison_skeleton}],
+      [no],
+      [
+        ############################
+        ############################
+        # Execution path 1 : Failure
+        ############################
+        ############################
+
+        AC_MSG_WARN([================================================================================])
+        AC_MSG_WARN([The configure script has encountered a problem :])
+        AC_MSG_WARN([------------------------------------------------])
+        AC_MSG_WARN([])
+        AC_MSG_WARN
+        AC_MSG_FAILURE(["You have to specify a Bison Skeleton file to use!"])
+      ],
       [yes],
       [
         if test "x${BISON_SKELETON_DEFAULT}" == "x"
         then
+
+          ############################
+          ############################
+          # Execution path 2 : Failure
+          ############################
+          ############################
+
           AC_MSG_WARN([================================================================================])
           AC_MSG_WARN([The configure script has encountered a problem :])
           AC_MSG_WARN([------------------------------------------------])
@@ -101,10 +169,6 @@ AS_HELP_STRING(
         else
           BISON_SKELETON=${BISON_SKELETON_DEFAULT}
         fi
-      ],
-      [no],
-      [
-        AC_MSG_FAILURE(["You have to specify a Bison Skeleton file to use!"])
       ],
       [BISON_SKELETON=${with_bison_skeleton}]
     )
@@ -145,63 +209,117 @@ AS_HELP_STRING(
       [
         if test "x${BISON_ROOTDIR}" == "x"
         then
-        
+
+          ############################
+          ############################
+          # Execution path 3 : Failure
+          ############################
+          ############################
+
           # The variable BISON_ROOTDIR has NOT been set. 
-        
+
           AC_MSG_WARN([================================================================================])
           AC_MSG_WARN([The configure script has encountered a problem :])
           AC_MSG_WARN([------------------------------------------------])
           AC_MSG_WARN([])
           AC_MSG_WARN([  > The specified GNU Bison Skeleton file could NOT be found.])
-          AC_MSG_WARN([  > The variable BISON_ROOTDIR does not appear to be set. As a result of this,])
-          AC_MSG_WARN([    the configure script might night not be able to find some or all of the])
-          AC_MSG_WARN([    components of GNU Bison that it requires.]) 
+          AC_MSG_WARN([  > The variable BISON_ROOTDIR is NOT set. As a result of this,])
+          AC_MSG_WARN([    the configure script might not be able to find some or all of the components])
+          AC_MSG_WARN([    of GNU Bison that it requires.]) 
           AC_MSG_WARN([])
           AC_MSG_WARN([As a result of this, the configuration system will be unable to tell the build])
           AC_MSG_WARN([system which GNU Bison Skeleton file it should use.])
           AC_MSG_WARN([])
           AC_MSG_WARN([To rectify this problem, try running the configure script again. This time])
-          AC_MSG_WARN([however, consider passing the name of the directory into which the GNU Bison])
-          AC_MSG_WARN([package has been installed, as an argument to the --with-bison-rootdir configure])
-          AC_MSG_WARN([script option. That is, invoke the --with-bison-rootdir configure script option])
-          AC_MSG_WARN([in a manner which is similar to the following;])
+          AC_MSG_WARN([however, consider performing the following action;])
           AC_MSG_WARN([])
-          AC_MSG_WARN([  --with-bison-rootdir=/home/foo/local/bison-3.8])
+          AC_MSG_WARN([  - passing the fully qualified name of the directory into which a GNU Bison])
+          AC_MSG_WARN([    package has been installed, as an argument to the --with-bison-rootdir])
+          AC_MSG_WARN([    configure script option. That is, invoke the --with-bison-rootdir configure])
+          AC_MSG_WARN([    script option in a manner which is similar to the following;])
+          AC_MSG_WARN([])
+          AC_MSG_WARN([      --with-bison-rootdir=/home/foo/bison-3.8])
           AC_MSG_WARN([])
           AC_MSG_WARN([Due to this problem which has been encountered - and hopefully explained clearly])
           AC_MSG_WARN([above, the configure script is about to exit with a failure.])
           AC_MSG_WARN([================================================================================])
           AC_MSG_FAILURE(["Exiting out of the configure script with a failure!!!"])
+
         else
-        
-          # The variable BISON_ROOTDIR has been set, but has it been set to a valid value?
-        
-          AC_MSG_WARN([================================================================================])
-          AC_MSG_WARN([The configure script has encountered a problem :])
-          AC_MSG_WARN([------------------------------------------------])
-          AC_MSG_WARN([])
-          AC_MSG_WARN([  > The specified GNU Bison Skeleton file could NOT be found.])
-          AC_MSG_WARN([  > The variable BISON_ROOTDIR appears to be set, but has it been set to a valid])
-          AC_MSG_WARN([    value?])
-          AC_MSG_WARN([])
-          AC_MSG_WARN([As a result of this, the configuration system will be unable to tell the build])
-          AC_MSG_WARN([system which GNU Bison Skeleton file it should use.])
-          AC_MSG_WARN([])
-          AC_MSG_WARN([To rectify this problem, try running the configure script again. This time])
-          AC_MSG_WARN([however, consider performing one of the following two actions;])
-          AC_MSG_WARN([])
-          AC_MSG_WARN([  - passing the fully qualified name of a valid GNU Bison Skeleton])
-          AC_MSG_WARN([file as an argument to the --with-bison-skeleton configure script option. That])
-          AC_MSG_WARN([is, invoke the --with-bison-skeleton configure script option in a manner which])
-          AC_MSG_WARN([is similar to the following;])
-          AC_MSG_WARN([])
-          AC_MSG_WARN([  --with-bison-skeleton=/home/foo/local/bison-3.8/share/bison/skeletons/lalr1.cc])
-          AC_MSG_WARN([])
-          AC_MSG_WARN([Due to this problem which has been encountered - and hopefully explained clearly])
-          AC_MSG_WARN([above, the configure script is about to exit with a failure.])
-          AC_MSG_WARN([================================================================================])
-          AC_MSG_FAILURE(["Exiting out of the configure script with a failure!!!"])
-        fir
+
+          # The variable BISON_ROOTDIR has been set. But has it been set to a valid value?
+          
+          if test -d ${BISON_ROOTDIR}
+          then
+
+            # The value specified in BISON_ROOTDIR does actually exist and it is actually
+            # a valid directory.
+
+            AC_MSG_WARN([================================================================================])
+            AC_MSG_WARN([The configure script has encountered a problem :])
+            AC_MSG_WARN([------------------------------------------------])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([  > The specified GNU Bison Skeleton file could NOT be found.])
+            AC_MSG_WARN([  > The variable BISON_ROOTDIR is set, but has it been set to a valid value?])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([As a result of this, the configuration system will be unable to tell the build])
+            AC_MSG_WARN([system which GNU Bison Skeleton file it should use.])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([To rectify this problem, try running the configure script again. This time])
+            AC_MSG_WARN([however, consider performing one of the following two actions;])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([  - passing the fully qualified name of the directory into which a GNU Bison])
+            AC_MSG_WARN([    package has been installed, as an argument to the --with-bison-rootdir])
+            AC_MSG_WARN([    configure script option. That is, invoke the --with-bison-rootdir configure])
+            AC_MSG_WARN([    script option in a manner which is similar to the following;])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([      --with-bison-rootdir=/home/foo/bison-3.8])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([  - passing the fully qualified name of a specific GNU Bison Skeleton file, as])
+            AC_MSG_WARN([    an argument to the --with-bison-skeleton configure script option. That is,])
+            AC_MSG_WARN([    invoke the --with-bison-skeleton configure script option in a manner which])
+            AC_MSG_WARN([    is similar to the following;])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([      --with-bison-skeleton=/home/foo/bison-3.8/share/bison/skeletons/lalr1.cc])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([Due to this problem which has been encountered - and hopefully explained clearly])
+            AC_MSG_WARN([above, the configure script is about to exit with a failure.])
+            AC_MSG_WARN([================================================================================])
+            AC_MSG_FAILURE(["Exiting out of the configure script with a failure!!!"])
+
+          else
+
+            # The value specified in BISON_ROOTDIR does NOT exist.
+
+            AC_MSG_WARN([================================================================================])
+            AC_MSG_WARN([The configure script has encountered a problem :])
+            AC_MSG_WARN([------------------------------------------------])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([  > The specified GNU Bison Skeleton file could NOT be found.])
+            AC_MSG_WARN([  > The variable BISON_ROOTDIR is actually set, but unfortunately it has been])
+            AC_MSG_WARN([    set to the name of a directory which doesn't actually exist!])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([As a result of this, the configuration system will be unable to tell the build])
+            AC_MSG_WARN([system which GNU Bison Skeleton file it should use.])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([To rectify this problem, try running the configure script again. This time])
+            AC_MSG_WARN([however, consider performing the following action;])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([  - passing the fully qualified name of the directory into which a GNU Bison])
+            AC_MSG_WARN([    package has been installed, as an argument to the --with-bison-rootdir])
+            AC_MSG_WARN([    configure script option. That is, invoke the --with-bison-rootdir configure])
+            AC_MSG_WARN([    script option in a manner which is similar to the following;])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([      --with-bison-rootdir=/home/foo/bison-3.8])
+            AC_MSG_WARN([])
+            AC_MSG_WARN([Due to this problem which has been encountered - and hopefully explained clearly])
+            AC_MSG_WARN([above, the configure script is about to exit with a failure.])
+            AC_MSG_WARN([================================================================================])
+            AC_MSG_FAILURE(["Exiting out of the configure script with a failure!!!"])
+
+          fi
+
+        fi
       
         AC_MSG_FAILURE([Could not find the GNU Bison Skeleton file : ${BISON_SKELETON_TEMP}])
       ]
