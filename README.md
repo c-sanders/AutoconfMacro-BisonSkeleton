@@ -67,7 +67,7 @@ following configure script option should show up when this configure script is i
 The macro is implemented in a rather basic fashion. It does not do anything too complex, and most of
 the work is offloaded onto the GNU Autoconf macro ```AC_CHECK_PROG```.
 
-![AutoconfMacro-BisonSkeleton macro flowchart](https://github.com/c-sanders/AutoconfMacro-BisonSkeleton/tree/main/images/flowchart.png)
+![AutoconfMacro-BisonSkeleton macro flowchart](./images/flowchart.png)
 
 As at 27 May 2022, the macro was implemented as follows;
 
