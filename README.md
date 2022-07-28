@@ -67,7 +67,11 @@ following configure script option should show up when this configure script is i
 The macro is implemented in a rather basic fashion. It does not do anything too complex, and most of
 the work is offloaded onto the GNU Autoconf macro ```AC_CHECK_PROG```.
 
+A flowchart which depicts the basic operation of this Autoconf macro is shown below in Image 1). As you can see from this flowchart, there are 14 possible paths of execution through the macro. Six of these paths, i.e. paths 1, 4, 8, 9, 13, and 15 will result in success, while the remaining paths will result in failure.
+
 ![AutoconfMacro-BisonSkeleton macro flowchart](./images/flowchart.png)
+
+Image 1) 
 
 As at 27 May 2022, the macro was implemented as follows;
 
