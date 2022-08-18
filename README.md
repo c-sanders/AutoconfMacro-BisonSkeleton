@@ -373,6 +373,10 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
     fi
 else
 
+    # The macro should not be able to get here.
+    #
+    # If it did, not sure how it did.
+
 fi
 ```
 
