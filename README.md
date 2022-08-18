@@ -76,12 +76,13 @@ A flowchart which depicts the basic operation of this Autoconf macro is shown be
 Image 1) Flowchart which outlines the operation of the macro.
 
 
-The key decisions in this flowchart, are summarised below and are indented accordingly.
+The key decisions in this flowchart, are summarised below as well as being indented accordingly.
 
 - if statement 1.0.0 (Path 1 : Success)
 
 ```
-# Test if the user passed --with-bison-skeleton-file=no-definate
+# Test if the Package configurer passed --with-bison-skeleton-file=no-definate
+# to the configure script.
 
 if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO_DEFINATE"
 ```
@@ -89,7 +90,8 @@ if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO_DEFINATE"
 - if statement 2.0.0 (Path 2 : Failure)
 
 ```
-# Test if the user passed --with-bison-skeleton-file=no
+# Test if the Package configurer passed --with-bison-skeleton-file=no to the
+# configure script.
 
 if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO"
 ```
@@ -97,7 +99,8 @@ if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO"
 - if statement 3.0.0
 
 ```
-# Test if the user passed --with-bison-skeleton-file=yes
+# Test if the Package configurer passed --with-bison-skeleton-file=yes to the
+# configure script.
 
 if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 ```
@@ -147,7 +150,8 @@ if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 - if statement 3.2.2.0 (Path 6 : Failure)
 
 ```
-        # Test if the Bison root directory is NOT actually a directory.
+        # Test if the value which has been specified for the Bison root
+        # directory is NOT actually a directory.
 
         if not test -d ${BISON_ROOTDIR}
 ```
@@ -170,7 +174,8 @@ if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 - if statement 4.0.0
 
 ```
-# Test if the user passed --with-bison-skeleton=<filename>
+# Test if the Package configurer passed --with-bison-skeleton=<filename> to the
+# configure script.
 
 elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
 ```
