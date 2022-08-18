@@ -73,7 +73,7 @@ A flowchart which depicts the basic operation of this Autoconf macro is shown be
 
 ![AutoconfMacro-BisonSkeleton macro flowchart](./images/flowchart.png)
 
-Image 1) 
+``` ``` Image 1) Flowchart which outlines the operation of the macro.
 
 
 The key decisions in this flowchart, are summarised below and are indented accordingly.
