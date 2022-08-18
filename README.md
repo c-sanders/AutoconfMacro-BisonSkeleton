@@ -253,6 +253,7 @@ else
 
 #### 5.2.1) Condensed version of above.
 
+```
 if   test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO_DEFINATE"
 
 elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO"
@@ -309,6 +310,7 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
 else
 
 fi
+```
 
 
 #### 5.2.2) Condensed version of above with comments.
