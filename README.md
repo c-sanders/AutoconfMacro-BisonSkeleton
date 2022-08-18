@@ -76,7 +76,9 @@ A flowchart which depicts the basic operation of this Autoconf macro is shown be
 Image 1) Flowchart which outlines the operation of the macro.
 
 
-The key decisions in this flowchart, are summarised below as well as being indented accordingly.
+##### 5.1.1) Key decisions within the flowchart.
+
+The key decisions in this flowchart are listed below as well as being indented accordingly.
 
 - if statement 1.0.0 (Path 1 : Success)
 
@@ -180,6 +182,14 @@ if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 # configure script.
 
 elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
+```
+
+- if statement 4.1.0
+
+```
+    # Test if the specified filename actually exists.
+
+    if 
 ```
 
 
