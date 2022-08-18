@@ -76,6 +76,8 @@ A flowchart which depicts the basic operation of this Autoconf macro is shown be
 Image 1) 
 
 
+The key decisions in this flowchart, are summarised below and are indented accordingly.
+
 - if statement 1.0.0 (Path 1 : Success)
 
 ```
@@ -140,6 +142,12 @@ if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 
 ```
             else
+```
+
+- if statement 4.0.0
+
+```
+elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
 ```
 
 
