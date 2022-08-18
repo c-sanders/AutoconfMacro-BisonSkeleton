@@ -88,10 +88,23 @@ if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO_DEFINATE"
 if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO"
 ```
 
-- if statement 3.0.0 (Path 3 : Failure)
+- if statement 3.0.0
 
 ```
 if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
+```
+
+- if statement 3.1.0 (Path 3 : Failure)
+
+```
+    if test "x${BISON_SKELETON_DEFAULT}" == "x"
+```
+
+- if statement 3.2.0 (Path 4 : Success)
+
+```
+    if test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
+       test "x${BISON_SKELETON_DEFAULT}"                 != "x"
 ```
 
 
