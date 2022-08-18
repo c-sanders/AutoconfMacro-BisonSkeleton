@@ -116,7 +116,9 @@ if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 - if statement 3.2.0 (Path 4 : Success)
 
 ```
-    # Test if the macro should NOT continue searching for a Skeleton file.
+---------|---------|---------|---------|---------|---------|---------|---------|
+    # Test if the macro should NOT continue searching for a default Bison 
+    # Skeleton file.
     # Test if a Bison default Skeleton file has been set.
 
     if test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
