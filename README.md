@@ -276,6 +276,8 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 
     fi
 
+    AC_CHECK_FILE
+
     if   test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
          test "x${BISON_SKELETON_DEFAULT}"                 != "x"
 
