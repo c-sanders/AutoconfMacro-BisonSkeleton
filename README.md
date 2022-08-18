@@ -237,7 +237,15 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
 - if statement else (Path 13 : Success)
 
 ```
+            else
+```
 
+- if statement else
+
+```
+    # The macro should not be able to get here.
+    #
+    # If it did, not sure how it did.
 ```
 
 
