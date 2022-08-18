@@ -78,7 +78,7 @@ Image 1) Flowchart which outlines the operation of the macro.
 
 #### 5.2) Key decisions within the flowchart.
 
-The key decisions in this flowchart are listed below as well as being indented accordingly.
+The key decisions in this flowchart are listed below, as well as being indented accordingly.
 
 - if statement 1.0.0 (Path 1 : Success)
 
@@ -95,7 +95,7 @@ if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO_DEFINATE"
 # Test if the Package configurer passed --with-bison-skeleton-file=no to the
 # configure script.
 
-if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO"
+elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO"
 ```
 
 - if statement 3.0.0
@@ -104,7 +104,7 @@ if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO"
 # Test if the Package configurer passed --with-bison-skeleton-file=yes to the
 # configure script.
 
-if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
+elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 ```
 
 - if statement 3.1.0 (Path 3 : Failure)
@@ -187,11 +187,44 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
 - if statement 4.1.0
 
 ```
-    # Test if the specified filename actually exists.
+    # Test if the macro should NOT continue searching for a Skeleton file.
+    # Test if the name of a Bison Skeleton file has been set.
 
-    if 
+    if test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
+       test "x${BISON_SKELETON_FILENAME}"                != "x"
 ```
 
+- if statement 4.2.0
+
+```
+    # Test if the macro should continue searching for a Skeleton file.
+    # Test if the name of a Bison Skeleton file has been set.
+    # Test if a Bison root directory has NOT been set.
+
+    elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
+         test "x${BISON_SKELETON_FILENAME}"                != "x"    &&
+         test "x${BISON_ROOTDIR}"                          == "x"
+```
+
+- if statement 4.3.0
+
+```
+    # Test if the macro should continue searching for a Skeleton file.
+    # Test if the name of a Bison Skeleton file has been set.
+    # Test if a Bison root directory has been set.
+
+    elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
+         test "x${BISON_SKELETON_FILENAME}"                != "x"    &&
+         test "x${BISON_ROOTDIR}"                          != "x"
+```
+
+- if statement 4.3.0.0
+```
+        # Test if the value which has been specified for the Bison root
+        # directory is NOT actually a directory.
+
+        if not test -d ${BISON_ROOTDIR}
+```
 
 #### 5.3) Code implementation of the macro.
 
