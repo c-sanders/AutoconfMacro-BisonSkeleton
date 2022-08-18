@@ -313,6 +313,7 @@ fi
 
 #### 5.2.2) Condensed version of above with comments.
 
+```
 if   test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO_DEFINATE"
 
     # Path 1 : Success
@@ -389,7 +390,7 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
 else
 
 fi
-
+```
 
 #### 5.3) Code implementation of the macro.
 
