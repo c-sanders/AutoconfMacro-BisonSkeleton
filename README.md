@@ -274,6 +274,8 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
         # Path 3 : Failure
         # ----------------
 
+    fi
+
     if   test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
          test "x${BISON_SKELETON_DEFAULT}"                 != "x"
 
@@ -300,6 +302,9 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
             # ----------------
 
         else
+
+            AC_CHECK_FILE
+
             if test "x${BISON_SKELETON_FILE_FOUND}" == "xNO"
 
                 # ----------------
@@ -317,6 +322,8 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
     fi
 
 elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
+
+    AC_CHECK_FILENAME
 
     if   test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
          test "x${BISON_SKELETON_FILENAME}"                != "x"
@@ -344,6 +351,9 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
             # -----------------
 
         else
+
+            AC_CHECK_FILE
+
             if test "x${BISON_SKELETON_FILE_FOUND}" == "xNO"
 
                 # -----------------
