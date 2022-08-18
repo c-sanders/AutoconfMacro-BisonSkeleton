@@ -234,6 +234,12 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
             if test "x${BISON_SKELETON_FILE_FOUND}" == "xNO"
 ```
 
+- if statement else (Path 13 : Success)
+
+```
+
+```
+
 
 #### 5.3) Code implementation of the macro.
 
