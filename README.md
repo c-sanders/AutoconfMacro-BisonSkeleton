@@ -251,33 +251,43 @@ else
 ```
 
 
-#### 5.2.2) Condensed version of above with comments.
+#### 5.2.1) Condensed version of above with comments.
 
 ```
 if   test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO_DEFINATE"
 
+    # ----------------
     # Path 1 : Success
+    # ----------------
 
 elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO"
 
+    # ----------------
     # Path 2 : Failure
+    # ----------------
 
 elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 
     if   test "x${BISON_SKELETON_DEFAULT}" == "x"
 
+        # ----------------
         # Path 3 : Failure
+        # ----------------
 
     if   test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
          test "x${BISON_SKELETON_DEFAULT}"                 != "x"
 
+        # ----------------
         # Path 4 : Success
+        # ----------------
 
     elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
          test "x${BISON_SKELETON_DEFAULT}"                 != "x"    &&
          test "x${BISON_ROOTDIR}"                          == "x"    &&
 
+        # ----------------
         # Path 5 : Failure
+        # ----------------
 
     elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
          test "x${BISON_SKELETON_DEFAULT}"                 != "x"    &&
@@ -285,16 +295,22 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 
         if not test -d ${BISON_ROOTDIR}
 
+            # ----------------
             # Path 6 : Failure
+            # ----------------
 
         else
             if test "x${BISON_SKELETON_FILE_FOUND}" == "xNO"
 
+                # ----------------
                 # Path 7 : Failure
+                # ----------------
 
             else
 
+                # ----------------
                 # Path 8 : Success
+                # ----------------
 
             fi
         fi
@@ -305,13 +321,17 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
     if   test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
          test "x${BISON_SKELETON_FILENAME}"                != "x"
 
+        # ----------------
         # Path 9 : Success
+        # ----------------
 
     elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
          test "x${BISON_SKELETON_FILENAME}"                != "x"    &&
          test "x${BISON_ROOTDIR}"                          == "x"
 
+        # -----------------
         # Path 10 : Failure
+        # -----------------
 
     elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
          test "x${BISON_SKELETON_FILENAME}"                != "x"    &&
@@ -319,10 +339,22 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
 
         if not test -d ${BISON_ROOTDIR}
 
+            # -----------------
+            # Path 11 : Failure
+            # -----------------
+
         else
             if test "x${BISON_SKELETON_FILE_FOUND}" == "xNO"
 
+                # -----------------
+                # Path 12 : Failure
+                # -----------------
+
             else
+
+                # -----------------
+                # Path 13 : Failure
+                # -----------------
 
             fi
         fi
