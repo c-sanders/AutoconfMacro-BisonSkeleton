@@ -118,7 +118,6 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 - if statement 3.2.0 (Path 4 : Success)
 
 ```
----------|---------|---------|---------|---------|---------|---------|---------|
     # Test if the macro should NOT continue searching for a default Bison 
     # Skeleton file.
     # Test if a Bison default Skeleton file has been set.
@@ -184,7 +183,7 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
 ```
 
-- if statement 4.1.0
+- if statement 4.1.0 (Path 9 : Success)
 
 ```
     # Test if the macro should NOT continue searching for a Skeleton file.
@@ -194,7 +193,7 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
        test "x${BISON_SKELETON_FILENAME}"                != "x"
 ```
 
-- if statement 4.2.0
+- if statement 4.2.0 (Path 10 : Failure)
 
 ```
     # Test if the macro should continue searching for a Skeleton file.
@@ -218,13 +217,23 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
          test "x${BISON_ROOTDIR}"                          != "x"
 ```
 
-- if statement 4.3.0.0
+- if statement 4.3.0.0 (Path 11 : Failure)
 ```
         # Test if the value which has been specified for the Bison root
         # directory is NOT actually a directory.
 
         if not test -d ${BISON_ROOTDIR}
 ```
+
+- if statement 4.3.0.1 (Path 12 : Failure)
+
+```
+        # Test if a Bison Skeleton file was NOT found.
+
+        else
+            if test "x${BISON_SKELETON_FILE_FOUND}" == "xNO"
+```
+
 
 #### 5.3) Code implementation of the macro.
 
