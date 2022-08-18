@@ -97,14 +97,49 @@ if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 - if statement 3.1.0 (Path 3 : Failure)
 
 ```
-....if test "x${BISON_SKELETON_DEFAULT}" == "x"
+    if test "x${BISON_SKELETON_DEFAULT}" == "x"
 ```
 
 - if statement 3.2.0 (Path 4 : Success)
 
 ```
-....if test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
-....   test "x${BISON_SKELETON_DEFAULT}"                 != "x"
+    if test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
+       test "x${BISON_SKELETON_DEFAULT}"                 != "x"
+```
+
+- if statement 3.2.1 (Path 5 : Failure)
+
+```
+    if test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
+       test "x${BISON_SKELETON_DEFAULT}"                 != "x"    &&
+       test "x${BISON_ROOTDIR}"                          == "x"    &&
+```
+
+- if statement 3.2.2
+
+```
+    if test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
+       test "x${BISON_SKELETON_DEFAULT}"                 != "x"    &&
+       test "x${BISON_ROOTDIR}"                          != "x"    &&
+```
+
+- if statement 3.2.2.0 (Path 6 : Failure)
+
+```
+        if not test -d ${BISON_ROOTDIR}
+```
+
+- if statement 3.2.2.1 (Path 7 : Failure)
+
+```
+        else
+            if test "x${BISON_SKELETON_FILE_FOUND}" == "xNO"
+```
+
+- if statement else (Path 8 : Success)
+
+```
+            else
 ```
 
 
