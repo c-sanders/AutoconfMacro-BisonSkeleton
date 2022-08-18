@@ -76,7 +76,7 @@ A flowchart which depicts the basic operation of this Autoconf macro is shown be
 Image 1) Flowchart which outlines the operation of the macro.
 
 
-##### 5.1.1) Key decisions within the flowchart.
+#### 5.2) Key decisions within the flowchart.
 
 The key decisions in this flowchart are listed below as well as being indented accordingly.
 
@@ -193,7 +193,7 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
 ```
 
 
-#### 5.2) Code implementation of the macro.
+#### 5.3) Code implementation of the macro.
 
 As at 27 May 2022, the macro was implemented as follows;
 
