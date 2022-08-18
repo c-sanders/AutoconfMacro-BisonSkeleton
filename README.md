@@ -375,10 +375,16 @@ else
 
     # The macro should not be able to get here.
     #
-    # If it did, not sure how it did.
+    # If it did, then not sure how it did, as it means that;
+    #
+    #   ${WITH_BISON_SKELETON_FILE_VALUE} != NO_DEFINATE &&
+    #   ${WITH_BISON_SKELETON_FILE_VALUE} != NO          &&
+    #   ${WITH_BISON_SKELETON_FILE_VALUE} != YES &&
+    #   ${WITH_BISON_SKELETON_FILE_VALUE} != FILENAME
 
 fi
 ```
+
 
 #### 5.3) Code implementation of the macro.
 
