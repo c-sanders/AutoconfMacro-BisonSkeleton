@@ -76,6 +76,25 @@ A flowchart which depicts the basic operation of this Autoconf macro is shown be
 Image 1) 
 
 
+- if statement 1.0.0 (Path 1 : Success)
+
+```
+if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO_DEFINATE"
+```
+
+- if statement 2.0.0 (Path 2 : Failure)
+
+```
+if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO"
+```
+
+- if statement 3.0.0 (Path 3 : Failure)
+
+```
+if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
+```
+
+
 #### 5.2) Code implementation of the macro.
 
 As at 27 May 2022, the macro was implemented as follows;
