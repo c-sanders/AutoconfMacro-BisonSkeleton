@@ -276,7 +276,7 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 
     fi
 
-    AC_CHECK_FILE
+    AC_CHECK_FILE([${BISON_SKELETON_DEFAULT}], ...)
 
     if   test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
          test "x${BISON_SKELETON_DEFAULT}"                 != "x"
@@ -305,7 +305,7 @@ elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 
         else
 
-            AC_CHECK_FILE
+            AC_CHECK_FILE([${BISON_ROOTDIR}/share/bison/skeletons/${BISON_SKELETON}], ...)
 
             if test "x${BISON_SKELETON_FILE_FOUND}" == "xNO"
 
