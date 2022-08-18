@@ -73,7 +73,7 @@ A flowchart which depicts the basic operation of this Autoconf macro is shown be
 
 ![AutoconfMacro-BisonSkeleton macro flowchart](./images/flowchart.png)
 
-``` ```  Image 1) Flowchart which outlines the operation of the macro.
+Image 1) Flowchart which outlines the operation of the macro.
 
 
 The key decisions in this flowchart, are summarised below and are indented accordingly.
@@ -148,6 +148,60 @@ if test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
 
 ```
 elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
+```
+
+
+- if statement 1.0.0 (Path 1 : Success)
+
+```
+# Test if the user passed --with-bison-skeleton-file=no-definate
+```
+
+- if statement 2.0.0 (Path 1 : Failure)
+
+```
+# Test if the user passed --with-bison-skeleton-file=no
+```
+
+- if statement 3.0.0
+
+```
+# Test if the user passed --with-bison-skeleton-file=yes
+```
+
+- if statement 3.1.0 (Path 3 : Failure)
+
+```
+    # Test if a Bison default Skeleton file has NOT been set.
+```
+
+- if statement 3.2.0 (Path 4 : Success)
+
+```
+    # Test if the macro should NOT continue searching for a Skeleton file.
+    # Test if a Bison default Skeleton file has been set.
+```
+
+- if statement 3.2.1 (Path 5 : Failure)
+
+```
+    # Test if the macro should continue searching for a Skeleton file.
+    # Test if a Bison default Skeleton file has been set.
+    # Test if a Bison root directory has NOT been set.
+```
+
+- if statement 3.2.2 
+
+```
+    # Test if the macro should continue searching for a Skeleton file.
+    # Test if a Bison default Skeleton file has been set.
+    # Test if a Bison root directory has been set.
+```
+
+- if statement 3.2.2.0 (Path 6 : Failure)
+
+```
+        # Test if the Bison root directory is NOT actually a directory.
 ```
 
 
