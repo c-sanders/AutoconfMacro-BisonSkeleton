@@ -254,135 +254,154 @@ else
 #### 5.2.1) Condensed version of above with comments.
 
 ```
-if   test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO_DEFINATE"
-
-    # ----------------
-    # Path 1 : Success
-    # ----------------
-
-elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO"
-
-    # ----------------
-    # Path 2 : Failure
-    # ----------------
-
-elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
-
-    if   test "x${BISON_SKELETON_DEFAULT}" == "x"
-
-        # ----------------
-        # Path 3 : Failure
-        # ----------------
-
-    fi
-
-    AC_CHECK_FILE([${BISON_SKELETON_DEFAULT}], ...)
-
-    if   test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
-         test "x${BISON_SKELETON_DEFAULT}"                 != "x"
-
-        # ----------------
-        # Path 4 : Success
-        # ----------------
-
-    elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
-         test "x${BISON_SKELETON_DEFAULT}"                 != "x"    &&
-         test "x${BISON_ROOTDIR}"                          == "x"    &&
-
-        # ----------------
-        # Path 5 : Failure
-        # ----------------
-
-    elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
-         test "x${BISON_SKELETON_DEFAULT}"                 != "x"    &&
-         test "x${BISON_ROOTDIR}"                          != "x"    &&
-
-        if not test -d ${BISON_ROOTDIR}
-
-            # ----------------
-            # Path 6 : Failure
-            # ----------------
-
-        else
-
-            AC_CHECK_FILE([${BISON_ROOTDIR}/share/bison/skeletons/${BISON_SKELETON}], ...)
-
-            if test "x${BISON_SKELETON_FILE_FOUND}" == "xNO"
-
-                # ----------------
-                # Path 7 : Failure
-                # ----------------
-
-            else
-
-                # ----------------
-                # Path 8 : Success
-                # ----------------
-
-            fi
-        fi
-    fi
-
-elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
-
-    AC_CHECK_FILE([${BISON_SKELETON_FILENAME}], ...)
-
-    if   test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
-         test "x${BISON_SKELETON_FILENAME}"                != "x"
-
-        # ----------------
-        # Path 9 : Success
-        # ----------------
-
-    elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
-         test "x${BISON_SKELETON_FILENAME}"                != "x"    &&
-         test "x${BISON_ROOTDIR}"                          == "x"
-
-        # -----------------
-        # Path 10 : Failure
-        # -----------------
-
-    elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
-         test "x${BISON_SKELETON_FILENAME}"                != "x"    &&
-         test "x${BISON_ROOTDIR}"                          != "x"
-
-        if not test -d ${BISON_ROOTDIR}
-
-            # -----------------
-            # Path 11 : Failure
-            # -----------------
-
-        else
-
-            AC_CHECK_FILE([${BISON_ROOTDIR}/share/bison/skeletons/${BISON_SKELETON_FILENAME}], ...)
-
-            if test "x${BISON_SKELETON_FILE_FOUND}" == "xNO"
-
-                # -----------------
-                # Path 12 : Failure
-                # -----------------
-
-            else
-
-                # -----------------
-                # Path 13 : Failure
-                # -----------------
-
-            fi
-        fi
-    fi
-else
-
-    # The macro should not be able to get here.
-    #
-    # If it did, then not sure how it did, as it means that;
-    #
-    #   ${WITH_BISON_SKELETON_FILE_VALUE} != NO_DEFINATE &&
-    #   ${WITH_BISON_SKELETON_FILE_VALUE} != NO          &&
-    #   ${WITH_BISON_SKELETON_FILE_VALUE} != YES &&
-    #   ${WITH_BISON_SKELETON_FILE_VALUE} != FILENAME
-
-fi
+001 if   test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO_DEFINATE"
+002 then
+003 
+004     # ----------------
+005     # Path 1 : Success
+006     # ----------------
+007 
+008 elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xNO"
+009 then
+010 
+011     # ----------------
+012     # Path 2 : Failure
+013     # ----------------
+014 
+015 elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xYES"
+016 then
+017 
+018     BISON_SKELETON_FILENAME=${BISON_SKELETON_FILENAME_DEFAULT}
+019 
+020     if   test "x${BISON_SKELETON_FILENAME}" == "x"
+021     then
+022 
+023         # ----------------
+024         # Path 3 : Failure
+025         # ----------------
+026 
+027     fi
+028 
+029     # If execution has reached this point, then ${BISON_SKELETON_FILENAME}
+030     # must be set.
+031 
+032     AC_CHECK_FILE([${BISON_SKELETON_FILENAME}], ...)
+033 
+034     if   test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO"
+035     then
+036 
+037         # ----------------
+038         # Path 4 : Success
+039         # ----------------
+040 
+041     elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
+042          test "x${BISON_ROOTDIR}"                          == "x"    &&
+043     then
+044 
+045         # ----------------
+046         # Path 5 : Failure
+047         # ----------------
+048 
+049     elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
+050          test "x${BISON_ROOTDIR}"                          != "x"    &&
+051     then
+052 
+053         #####################################################
+054         # Maybe replace the following test with AC_CHECK_FILE
+055         #####################################################
+056 
+057         if not test -d ${BISON_ROOTDIR}
+058         then
+059 
+060             # ----------------
+061             # Path 6 : Failure
+062             # ----------------
+063 
+064         fi
+065 
+066         AC_CHECK_FILE([${BISON_ROOTDIR}/share/bison/skeletons/${BISON_SKELETON}], ...)
+067 
+068         if test "x${BISON_SKELETON_FILE_FOUND}" == "xNO"
+069         then
+070 
+071             # ----------------
+072             # Path 7 : Failure
+073             # ----------------
+074 
+075         else
+076 
+077             # ----------------
+078             # Path 8 : Success
+079             # ----------------
+080 
+081         fi
+082     fi
+083 
+084 elif test "x${WITH_BISON_SKELETON_FILE_VALUE}" == "xFILENAME"
+085 
+086     AC_CHECK_FILE([${BISON_SKELETON_FILENAME}], ...)
+087 
+088     if   test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xNO" &&
+089          test "x${BISON_SKELETON_FILENAME}"                != "x"
+090     then
+091 
+092         # ----------------
+093         # Path 9 : Success
+094         # ----------------
+095 
+096     elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
+097          test "x${BISON_SKELETON_FILENAME}"                != "x"    &&
+098          test "x${BISON_ROOTDIR}"                          == "x"
+099     then
+100 
+101         # -----------------
+102         # Path 10 : Failure
+103         # -----------------
+104 
+105     elif test "x${BISON_SKELETON_FILE_CONTINUE_SEARCHING}" == "xYES" &&
+106          test "x${BISON_SKELETON_FILENAME}"                != "x"    &&
+107          test "x${BISON_ROOTDIR}"                          != "x"
+108     then
+109 
+110         if not test -d ${BISON_ROOTDIR}
+111         then
+112 
+113             # -----------------
+114             # Path 11 : Failure
+115             # -----------------
+116 
+117         else
+118 
+119             AC_CHECK_FILE([${BISON_ROOTDIR}/share/bison/skeletons/${BISON_SKELETON_FILENAME}], ...)
+120 
+121             if test "x${BISON_SKELETON_FILE_FOUND}" == "xNO"
+122             then
+123 
+124                 # -----------------
+125                 # Path 12 : Failure
+126                 # -----------------
+127 
+128             else
+129 
+130                 # -----------------
+131                 # Path 13 : Failure
+132                 # -----------------
+133 
+134             fi
+135         fi
+136     fi
+137 else
+138 
+139     # The macro should not be able to get here.
+140     #
+141     # If it did, then not sure how it did, as it means that;
+142     #
+143     #   ${WITH_BISON_SKELETON_FILE_VALUE} != NO_DEFINATE &&
+144     #   ${WITH_BISON_SKELETON_FILE_VALUE} != NO          &&
+145     #   ${WITH_BISON_SKELETON_FILE_VALUE} != YES &&
+146     #   ${WITH_BISON_SKELETON_FILE_VALUE} != FILENAME
+147 
+148 fi
 ```
 
 
